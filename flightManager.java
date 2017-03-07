@@ -17,6 +17,7 @@ public class flightManager
 	{
                 boolean isFiles = validateFiles();
 		readInFiles();
+		programLauncher(args);
 		
 		
 		
@@ -100,7 +101,7 @@ public class flightManager
         Output:
 	*/
         
-	public static boolean validateFlight(String airportCode, int num)
+	public static boolean validateFlight(String input, int num)
 	{
 		return true;
         
@@ -112,8 +113,19 @@ public class flightManager
         Output:
 	*/
         
-	public static void programLauncher(String[] args)
+	public static void programLauncher(String[] input)
 	{
+		switch(input[0])
+		{
+                case "AA":       addAirport(input[1],input[2]); break;
+                case "EA":       editAirport(input[1],input[2]); break;
+                case "DA":       deleteAirport(input[1]); break;
+		case "EF":       editFlight(input[1],input[2],input[3],input[4]); break;
+                case "DF":       deleteFlight(input[1]); break;
+                case "SF":       searchFlight(input[1],input[2]); break;
+		case "SD":       searchDate(input[1],input[2],input[3]); break;
+                default:         System.out.print("error method " + input[0] + " not found");
+		}
         
         }
         
@@ -125,7 +137,7 @@ public class flightManager
         
         public static void addAirport(String airport,String airportCode)
 	{
-        
+        	//figure out which input is the airport name and whihc one is the airport code, then send it off to validation
         }
         
         /*
@@ -134,9 +146,9 @@ public class flightManager
         Output:
 	*/
         
-        public static void editAirport(String airport,String airportCode)
+        public static void editAirport(String airportCode,String airport)
 	{
-        
+        	
         }
         
         /*
@@ -147,7 +159,7 @@ public class flightManager
         
         public static void deleteAirport(String airportCode)
 	{
-        
+        	
         }
         
         /*
@@ -158,7 +170,7 @@ public class flightManager
         
         public static void editFlight(String flightNum,String flightDays, String startFlight, String endFlight)
 	{
-        
+        	
         }
         
         /*
@@ -169,7 +181,7 @@ public class flightManager
         
         public static void deleteFlight(String flightNum)
 	{
-        
+
         }
         
         /*
@@ -180,7 +192,7 @@ public class flightManager
         
         public static void searchFlight(String airportDepart,String airportArrive)
 	{
-        
+
         }
         
         /*
@@ -191,7 +203,7 @@ public class flightManager
         
         public static void searchDate(String airportDepart,String airportArrive, String date)
 	{
-        
+		
         }
         
         /*
