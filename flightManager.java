@@ -115,16 +115,25 @@ public class flightManager
         
 	public static void programLauncher(String[] input)
 	{
-		switch(input[0])
-		{
-                case "AA":       addAirport(input[1],input[2]); break;
-                case "EA":       editAirport(input[1],input[2]); break;
-                case "DA":       deleteAirport(input[1]); break;
-		case "EF":       editFlight(input[1],input[2],input[3],input[4]); break;
-                case "DF":       deleteFlight(input[1]); break;
-                case "SF":       searchFlight(input[1],input[2]); break;
-		case "SD":       searchDate(input[1],input[2],input[3]); break;
-                default:         System.out.print("error method " + input[0] + " not found");
+		
+		try {
+    
+
+			switch(input[0])
+			{
+				case "AA":       addAirport(input[1],input[2]); break;
+				case "EA":       editAirport(input[1],input[2]); break;
+				case "DA":       deleteAirport(input[1]); break;
+				case "EF":       editFlight(input[1],input[2],input[3],input[4]); break;
+				case "DF":       deleteFlight(input[1]); break;
+				case "SF":       searchFlight(input[1],input[2]); break;
+				case "SD":       searchDate(input[1],input[2],input[3]); break;
+				default:         System.out.print("error 2 \n method " + input[0] + " not found");
+			}
+			
+		}
+		catch(ArrayIndexOutOfBoundsException exception) {
+			System.out.print("error 1 \nNot enough objects to pass into program");
 		}
         
         }
