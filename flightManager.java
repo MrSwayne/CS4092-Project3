@@ -232,6 +232,26 @@ public class flightManager
         
         public static void writeToFlights()
 	{
+		try
+        	{
+		       PrintWriter outFile = new PrintWriter("Flights.txt");
+		       String currentLine = "";
+		       for (int i = 0; i <flightList.size(); i++)
+		       {
+			       currentLine = flightList.get(i)[0];
+			       for(int j = 1; j<flightList.get(i).length;j++)
+			       {
+				       currentLine = currentLine + "," + flightList.get(i)[j];
+			       }
+			       //prints each line to the text file
+			       outFile.println(currentLine);
+		       }
+		       outFile.close();
+		}
+		catch(IOException e)
+        	{
+            		System.out.print("IOException : " + e.getMessage());
+		}
                
         }
 }
