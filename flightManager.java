@@ -4,8 +4,8 @@ import java.util.*;
 
 public class flightManager
 {
-        ArrayList<String []> airportList = new ArrayList<String[]>();
-        ArrayList<String []> flightList = new ArrayList<String[]>();
+        public static ArrayList<String []> airportList = new ArrayList<String[]>();
+        public static ArrayList<String []> flightList = new ArrayList<String[]>();
         
         /*
 	@authors 
@@ -15,7 +15,7 @@ public class flightManager
         
         public static void main(String[] args) 
 	{
-                boolean isFiles = validateFiles;
+                boolean isFiles = validateFiles();
 		readInFiles();
 		
 		
@@ -30,21 +30,29 @@ public class flightManager
         
         public static void readInFiles()
 	{
-                
 		try
 		{
 			FileReader airportFile = new FileReader("Airports.txt");
 			FileReader flightFile = new FileReader("Flights.txt");
 			Scanner in = new Scanner(airportFile);
+			String[] data;
+			int counter = 0;
 			
 			while(in.hasNext())
 			{
 				//splits the data, 
-				airportList.add(in.nextLine().split(","));
+				data=in.nextLine().split(",");
+				
+				for(int i =0;i<data.length;i++)
+				{
+					airportList.add(counter).add(data[i]);
+				}
+				
+				counter++;
 			}
 			
 			in = new Scanner(airportFile);
-			
+			counter = 0;
 			while(in.hasNext())
 			{
 				//splits the data,
@@ -66,9 +74,6 @@ public class flightManager
 		{
 			System.out.print("IOException : " + e.getMessage());
 		}
-                
-                return false;
-
 	}
 	
 	/*
@@ -79,8 +84,8 @@ public class flightManager
         
         public static boolean validateFiles()
 	{
-		File airportFile = new File(Airports.txt);
-		File flightFile = new File(Flights.txt);
+		File airportFile = new File("Airports.txt");
+		File flightFile = new File("Flights.txt");
 		if(airportFile.exists() && flightFile.exists()){
                         return true;
                 }
