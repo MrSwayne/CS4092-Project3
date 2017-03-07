@@ -92,6 +92,13 @@ public class flightManager
         
 	public static boolean validateAirport(String airportCode, int num)
 	{
+		String validateOf;
+		switch(num)
+			{
+				case 1:       validateOf = "airportName"; break;
+				case 2:       validateOf = "airportCode"; break;
+				default:      System.out.print("error 3 \nValidation incomplete");
+			}
 		return true;
         }
         
@@ -103,6 +110,19 @@ public class flightManager
         
 	public static boolean validateFlight(String input, int num)
 	{
+		String validateOf;
+		switch(num)
+			{
+				case 1:       validateOf = "flightNum"; break;
+				case 2:       validateOf = "DepartAirportCode"; break;
+				case 3:       validateOf = "ArriveAirportCode"; break;
+				case 4:       validateOf = "DepartureTime"; break;
+				case 5:       validateOf = "ArrivalTime"; break;
+				case 6:       validateOf = "DaysRunning"; break;
+				case 7:       validateOf = "StartDate"; break;
+				case 8:       validateOf = "EndDate"; break;
+				default:      System.out.print("error 3 \nValidation incomplete");
+			}
 		return true;
         
         }
@@ -117,8 +137,6 @@ public class flightManager
 	{
 		
 		try {
-    
-
 			switch(input[0])
 			{
 				case "AA":       addAirport(input[1],input[2]); break;
@@ -132,10 +150,10 @@ public class flightManager
 			}
 			
 		}
-		catch(ArrayIndexOutOfBoundsException exception) {
+		catch(ArrayIndexOutOfBoundsException exception)
+		{
 			System.out.print("error 1 \nNot enough objects to pass into program");
 		}
-        
         }
         
         /*
