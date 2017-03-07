@@ -35,24 +35,15 @@ public class flightManager
 			FileReader airportFile = new FileReader("Airports.txt");
 			FileReader flightFile = new FileReader("Flights.txt");
 			Scanner in = new Scanner(airportFile);
-			String[] data;
-			int counter = 0;
 			
 			while(in.hasNext())
 			{
 				//splits the data, 
-				data=in.nextLine().split(",");
-				
-				for(int i =0;i<data.length;i++)
-				{
-					airportList.add(counter).add(data[i]);
-				}
-				
-				counter++;
+				airportList.add(in.nextLine().split(","));
 			}
 			
 			in = new Scanner(airportFile);
-			counter = 0;
+			
 			while(in.hasNext())
 			{
 				//splits the data,
@@ -89,6 +80,7 @@ public class flightManager
 		if(airportFile.exists() && flightFile.exists()){
                         return true;
                 }
+		return false;
         }
         
          /*
@@ -99,7 +91,7 @@ public class flightManager
         
 	public static boolean validateAirport(String airportCode, int num)
 	{
-        
+		return true;
         }
         
          /*
@@ -110,6 +102,7 @@ public class flightManager
         
 	public static boolean validateFlight(String airportCode, int num)
 	{
+		return true;
         
         }
         
@@ -215,10 +208,10 @@ public class flightManager
 		       String currentLine = "";
 		       for (int i = 0; i <airportList.size(); i++)
 		       {
-			       currentLine = airportList.get(i).get(0);
-			       for(int j = 1; j<airportList.get(j).size();j++)
+			       currentLine = airportList.get(i)[0];
+			       for(int j = 1; j<airportList.get(i).length;j++)
 			       {
-				       currentLine = currentLine + "," + airportList.get(j);
+				       currentLine = currentLine + "," + airportList.get(i)[j];
 			       }
 			       //prints each line to the text file
 			       outFile.println(currentLine);
