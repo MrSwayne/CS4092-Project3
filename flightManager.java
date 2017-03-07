@@ -26,7 +26,7 @@ public class flightManager
         }
         
         /*
-	@authors 
+	@authors Ian Mckay
 	Input: 
         Output:
 	*/
@@ -187,34 +187,43 @@ public class flightManager
         }
         
         /*
+	@authors Ian McKay and 
+	Input: 
+        Output:
+	*/
+        
+        public static void writeToAirports()
+	{
+               try
+        	{
+		       PrintWriter outFile = new PrintWriter("Airports.txt");
+		       String currentLine = ""
+		       for (int i = 0; i <airportList.size(); i++)
+		       {
+			       currentLine = airportList.get(i).get(0);
+			       for(int j = 1 j<airportList.get(j).size())
+			       {
+				       currentLine = currentLine + "," + airportList.get(j);
+			       }
+			       //prints each line to the text file
+			       outFile.println(currentLine);
+		       }
+		       outFile.close();
+		}
+		catch(IOException e)
+        	{
+            		System.out.print("IOException : " + e.getMessage());
+		}
+        }
+	
+	/*
 	@authors 
 	Input: 
         Output:
 	*/
         
-        public static void writeToFiles()
+        public static void writeToFlights()
 	{
-               try
-        {
-            
-        PrintWriter outFile = new PrintWriter("users.txt");
-        for (int i = 0; i <userList.length; i++)
-        {
-                //prints each line to the text file
-                outFile.println((userList[i]));
+               
         }
-        outFile.close();
-      
-       }
-        catch(IOException e)
-        {
-            System.out.print("IOException : " + e.getMessage());
-        }
-        }
-        
-        
-        
-        
-
-
 }
