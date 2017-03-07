@@ -4,8 +4,8 @@ import java.util.*;
 
 public class flightManager
 {
-        ArrayList<String []> airportList;
-        ArrayList<String []> flightList;
+        ArrayList<String []> airportList = new ArrayList<String[]>();
+        ArrayList<String []> flightList = new ArrayList<String[]>();
         
         /*
 	@authors 
@@ -15,23 +15,20 @@ public class flightManager
         
         public static void main(String[] args) 
 	{
-        
-                public airportList = new ArrayList<String[]>();
-		public flightList = new Arraylist<String[]>();
-                boolean isFiles = readInFiles();
-                
-        
-        
-        
+                boolean isFiles = validateFiles;
+		readInFiles();
+		
+		
+		
         }
-        
+	
         /*
 	@authors Ian Mckay
 	Input: 
         Output:
 	*/
         
-        public static boolean readInFiles()
+        public static void readInFiles()
 	{
                 
 		try
@@ -59,9 +56,7 @@ public class flightManager
 			flightFile.close();
                         
                         
-                        if(airportFile.isFile() && flightFile.isFile()){
-                        return true;
-                        }
+                        
 		}
 		catch(FileNotFoundException e)
 		{
@@ -75,6 +70,21 @@ public class flightManager
                 return false;
 
 	}
+	
+	/*
+	@authors 
+	Input: 
+        Output:
+	*/
+        
+        public static boolean validateFiles()
+	{
+		File airportFile = new File(Airports.txt);
+		File flightFile = new File(Flights.txt);
+		if(airportFile.exists() && flightFile.exists()){
+                        return true;
+                }
+        }
         
          /*
 	@authors 
