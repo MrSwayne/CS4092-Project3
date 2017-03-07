@@ -1,0 +1,7 @@
+Dublin,DUB
+New York,JFK
+Shannon,SNN
+London,LHR
+Frankfurt,FRA
+San Francisco,SFO
+Chicago,ORD
