@@ -194,7 +194,22 @@ public class flightManager
         
         public static void writeToFiles()
 	{
-              
+               try
+        {
+            
+        PrintWriter outFile = new PrintWriter("users.txt");
+        for (int i = 0; i <userList.length; i++)
+        {
+                //prints each line to the text file
+                outFile.println((userList[i]));
+        }
+        outFile.close();
+      
+       }
+        catch(IOException e)
+        {
+            System.out.print("IOException : " + e.getMessage());
+        }
         }
         
         
