@@ -16,8 +16,8 @@ public class flightManager
         public static void main(String[] args) 
 	{
         
-                airportList = new ArrayList<String[]>();
-		flightList = new Arraylist<String[]>();
+                public airportList = new ArrayList<String[]>();
+		public flightList = new Arraylist<String[]>();
                 boolean isFiles = readInFiles();
                 
         
@@ -197,11 +197,11 @@ public class flightManager
                try
         	{
 		       PrintWriter outFile = new PrintWriter("Airports.txt");
-		       String currentLine = ""
+		       String currentLine = "";
 		       for (int i = 0; i <airportList.size(); i++)
 		       {
 			       currentLine = airportList.get(i).get(0);
-			       for(int j = 1 j<airportList.get(j).size())
+			       for(int j = 1; j<airportList.get(j).size();j++)
 			       {
 				       currentLine = currentLine + "," + airportList.get(j);
 			       }
