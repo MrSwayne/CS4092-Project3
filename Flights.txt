@@ -1,0 +1,4 @@
+Flight Number,Source Airport Code,Destination Airport Code,Departure Time,Arrival Time,Start Date,End Date
+EI1240,DUB,LHR,1310,1425,-TWTFS-,25/10/2017,24/12/2017
+EI3250,DUB,JKF,0615,1345,-MFSS-,01/11/2017,15/14/2017
+EI4260,DUB,SNN,1000,1030,-MTW-,29/10/2017,04/12/2017
