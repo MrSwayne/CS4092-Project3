@@ -174,7 +174,27 @@ public class flightManager
 					}
 					break;
 				case 3:       
-					validateOf = "DaysRunning"; 
+					validateOf = "DaysRunning";
+					String days = "-MTWTFSS-"
+					int countInOrder=0;
+					int matchCount=0;
+					
+					String pattern="[-MTWFS]";
+					
+					for(int i = 0; i < input; i++)
+					{
+						for(int j = countInOrder; j < days; j++)
+						{
+							if(input.charAt(i)==days.charAt(j))
+							{
+								matchCount++;
+								countInOrder= j;
+							}
+						}
+					}
+					if(matchCount==input.length){
+						isValid=true;
+					}
 					break;
 				case 4:       
 					validateOf = "StartEndDate"; 
