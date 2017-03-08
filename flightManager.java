@@ -4,8 +4,8 @@ import java.util.*;
 
 public class flightManager
 {
-        public static ArrayList<String []> airportList = new ArrayList<String[]>();
-        public static ArrayList<String []> flightList = new ArrayList<String[]>();
+        public static ArrayList<ArrayList<String>> airportList = new ArrayList<ArrayList<String>>();
+        public static ArrayList<ArrayList<String>> flightList = new ArrayList<ArrayList<String>>();
         
         /*
 	@authors Ian McKay and Adam Swayne
@@ -35,20 +35,32 @@ public class flightManager
 		{
 			FileReader airportFile = new FileReader("Airports.txt");
 			FileReader flightFile = new FileReader("Flights.txt");
+			
 			Scanner in = new Scanner(airportFile);
+			String data[];
+			int counter = 0;
 			
 			while(in.hasNext())
 			{
-				//splits the data, 
-				airportList.add(in.nextLine().split(","));
+				airportList.add(new ArrayList<String>());
+				data=in.nextLine().split(",");
+				for(int i=0;i<data.length;i++){
+					airportList.get(counter).add(data[i]);
+				}
+				counter++
 			}
 			
 			in = new Scanner(airportFile);
+			counter=0;
 			
 			while(in.hasNext())
 			{
-				//splits the data,
-				flightList.add(in.nextLine().split(","));
+				flightList.add(new ArrayList<String>());
+				data=in.nextLine().split(",");
+				for(int i=0;i<data.length;i++){
+					flightList.get(counter).add(data[i]);
+				}
+				counter++
 			}
 			
 			in.close();
@@ -303,10 +315,10 @@ public class flightManager
 		       String currentLine = "";
 		       for (int i = 0; i <airportList.size(); i++)
 		       {
-			       currentLine = airportList.get(i)[0];
-			       for(int j = 1; j<airportList.get(i).length;j++)
+			       currentLine = airportList.get(i).get(0);
+			       for(int j = 1; j<airportList.get(i).size();j++)
 			       {
-				       currentLine = currentLine + "," + airportList.get(i)[j];
+				       currentLine = currentLine + "," + airportList.get(i).get(j);
 			       }
 			       //prints each line to the text file
 			       outFile.println(currentLine);
@@ -333,10 +345,10 @@ public class flightManager
 		       String currentLine = "";
 		       for (int i = 0; i <flightList.size(); i++)
 		       {
-			       currentLine = flightList.get(i)[0];
-			       for(int j = 1; j<flightList.get(i).length;j++)
+			       currentLine = flightList.get(i).get(0);
+			       for(int j = 1; j<flightList.get(i).size();j++)
 			       {
-				       currentLine = currentLine + "," + flightList.get(i)[j];
+				       currentLine = currentLine + "," + flightList.get(i).get(j);
 			       }
 			       //prints each line to the text file
 			       outFile.println(currentLine);
