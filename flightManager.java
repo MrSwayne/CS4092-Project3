@@ -16,13 +16,12 @@ public class flightManager
         public static void main(String[] args) 
 	{
                 boolean isFiles = validateFiles();
-		if(isFiles){
+		if(isFiles)
+		{
 			readInFiles();
 			programLauncher(args);
-		
-		
-		}
-        }
+		}		
+	}
 	
         /*
 	@authors Ian Mckay
@@ -79,11 +78,11 @@ public class flightManager
 	{
 		File airportFile = new File("Airports.txt");
 		File flightFile = new File("Flights.txt");
-		if(airportFile.exists() && flightFile.exists()){
-                        return true;
-                }
-		return false;
-        }
+			
+		if(airportFile.exists() && flightFile.exists())			 			return true;
+		else airportFile.createNewFile();	flightFile.createNewFile();		return true;
+
+    }
         
          /*
 	@authors 
@@ -115,7 +114,7 @@ public class flightManager
 					System.out.print("error 3 \nValidation incomplete");
 			}
 		return isValid;
-        }
+      }
         
          /*
 	@authors 
@@ -159,7 +158,7 @@ public class flightManager
 			}
 		return true;
         
-        }
+      }
         
          /*
 	@authors 
@@ -170,7 +169,8 @@ public class flightManager
 	public static void programLauncher(String[] input)
 	{
 		
-		try {
+		try 
+		{
 			switch(input[0])
 			{
 				case "AA":       addAirport(input[1],input[2]); break;
@@ -188,7 +188,7 @@ public class flightManager
 		{
 			System.out.print("error 1 \nNot enough objects to pass into program");
 		}
-        }
+     }
         
         /*
 	@authors 
@@ -275,6 +275,16 @@ public class flightManager
         
         public static void sortFiles()
 	{
+			//Going to bubble sort the airportList and flightList in these for loops
+			for(int i = 0;i < airportList.size();i++)
+			{
+				for(int j = i + 1; j < airportList.size() - i;j++)
+				{
+
+				}
+			}
+			
+			
 		writeToAirports();
 		writeToFlights();
         }
