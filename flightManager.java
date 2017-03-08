@@ -111,7 +111,7 @@ public class flightManager
 				case 1:       
 					validationOf = "airportName";
 					
-					String pattern  = "[a-zA-Z//s]*";
+					String pattern  = "[a-zA-Z\\s]*";
 						
 					if(input != null && input.length() != 0)
 					{
@@ -175,11 +175,11 @@ public class flightManager
 					break;
 				case 3:       
 					validateOf = "DaysRunning";
-					days = "-MTWTFSS-";
+					String days = "-MTWTFSS-";
 					int countInOrder=0;
 					int matchCount=0;
 					
-					String pattern="[-MTWFS]";
+					pattern="[-MTWFS]";
 					
 					for(int i = 0; i < input.length(); i++)
 					{
