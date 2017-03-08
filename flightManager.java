@@ -47,7 +47,7 @@ public class flightManager
 				for(int i=0;i<data.length;i++){
 					airportList.get(counter).add(data[i]);
 				}
-				counter++
+				counter++;
 			}
 			
 			in = new Scanner(airportFile);
@@ -60,7 +60,7 @@ public class flightManager
 				for(int i=0;i<data.length;i++){
 					flightList.get(counter).add(data[i]);
 				}
-				counter++
+				counter++;
 			}
 			
 			in.close();
@@ -105,7 +105,7 @@ public class flightManager
 	public static boolean validateAirport(String airportCode, int num)
 	{
 		String validationOf;
-		boolean isValid=false
+		boolean isValid=false;
 		switch(num)
 			{
 				case 1:       
@@ -140,7 +140,7 @@ public class flightManager
 		String validateOf;
 		switch(num)
 			{
-				case 1:{       
+				case 1:       
 					validateOf = "flightNum";
 					
 					break;
