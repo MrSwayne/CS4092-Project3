@@ -6,7 +6,25 @@ public class flightManager
 {
         public static ArrayList<ArrayList<String>> airportList = new ArrayList<ArrayList<String>>();
         public static ArrayList<ArrayList<String>> flightList = new ArrayList<ArrayList<String>>();
-        
+	/*
+	TODO List:
+	validateFlight()  only case 4 validation left
+	addAirport()      simple
+	editAirport()     simple
+	deleteAirport()   complex lots of deleting
+	editFlight()      medium difficulty
+	deleteFlight()    medium difficulty
+	searchFlight()    medium difficulty
+	searchDate()      medium difficulty
+	sortList()        hard, Adams got it
+	
+	
+	FYI: the validation methods do not display errors if validation is false,
+	it only return true or false, please handle and output all error messeges 
+	within your function on a case by case basis
+	*/
+	
+	
         /*
 	@authors Ian McKay & Adam Swayne
 	Input: 
