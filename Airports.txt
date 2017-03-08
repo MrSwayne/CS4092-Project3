@@ -5,3 +5,4 @@ London,LHR
 Frankfurt,FRA
 San Francisco,SFO
 Chicago,ORD
+Paris, CDG
