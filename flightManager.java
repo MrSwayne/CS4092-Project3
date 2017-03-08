@@ -8,7 +8,7 @@ public class flightManager
         public static ArrayList<String []> flightList = new ArrayList<String[]>();
         
         /*
-	@authors 
+	@authors Ian McKay and Adam Swayne
 	Input: 
         Output:
 	*/
@@ -232,9 +232,21 @@ public class flightManager
 	{
 		
         }
+	
+	/*
+	@authors Adam Swayne
+	Input: 
+        Output:
+	*/
+        
+        public static void sortFiles()
+	{
+		writeToAirports();
+		writeToFlights();
+        }
         
         /*
-	@authors Ian McKay and 
+	@authors Ian McKay
 	Input: 
         Output:
 	*/
@@ -264,7 +276,7 @@ public class flightManager
         }
 	
 	/*
-	@authors 
+	@authors Ian McKay
 	Input: 
         Output:
 	*/
