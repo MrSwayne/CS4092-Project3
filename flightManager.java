@@ -110,8 +110,8 @@ public class flightManager
 			{
 				case 1:       
 					validationOf = "airportName";
-					boolean isValid= false;
-					String pattern  = "[a-zA-Z//s]"
+					
+					String pattern  = "[a-zA-Z//s]";
 						
 					if(input != null && input.length() != 0)
 					{
@@ -126,10 +126,10 @@ public class flightManager
 					validationOf = "airportCode";
 					isValid=true;
 					
-					for (int i=0; i<airportCode.length(); i++){
-						if (!Character.isUpperCase(airportCode.charAt(i))) isValid= false;
+					for (int i=0; i<input.length(); i++){
+						if (!Character.isUpperCase(input.charAt(i))) isValid= false;
 					}
-					if (airportCode.length()!=3) isValid= false;
+					if (input.length()!=3) isValid= false;
 					break;
 					
 				default:      System.out.print("error 3 \nValidation incomplete");
@@ -153,7 +153,7 @@ public class flightManager
 			{
 				case 1:       
 					validateOf = "flightNum";
-					String pattern="[A-Z][A-Z]\\d\\d\\d\\d";
+					pattern="[A-Z][A-Z]\\d\\d\\d\\d";
 					if(input != null && input.length() != 0)
 					{
 						if(input.matches(pattern))
@@ -164,7 +164,7 @@ public class flightManager
 					break;
 				case 2:       
 					validateOf = "DepartureArrivalTime";
-					String pattern="\\d\\d\\d\\d";
+					pattern="\\d\\d\\d\\d";
 					if(input != null && input.length() != 0)
 					{
 						if(input.matches(pattern))
@@ -175,15 +175,15 @@ public class flightManager
 					break;
 				case 3:       
 					validateOf = "DaysRunning";
-					String days = "-MTWTFSS-"
+					days = "-MTWTFSS-";
 					int countInOrder=0;
 					int matchCount=0;
 					
 					String pattern="[-MTWFS]";
 					
-					for(int i = 0; i < input; i++)
+					for(int i = 0; i < input.length(); i++)
 					{
-						for(int j = countInOrder; j < days; j++)
+						for(int j = countInOrder; j < days.length(); j++)
 						{
 							if(input.charAt(i)==days.charAt(j))
 							{
@@ -192,7 +192,7 @@ public class flightManager
 							}
 						}
 					}
-					if(matchCount==input.length){
+					if(matchCount==input.length()){
 						isValid=true;
 					}
 					break;
