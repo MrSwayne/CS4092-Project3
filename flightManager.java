@@ -182,19 +182,20 @@ public class flightManager
 					String days = "-MTWTFSS-";
 					int countInOrder=0;
 					int matchCount=0;
-					
-					pattern="[-MTWFS]";
+					boolean matchThisPos=false;
 					
 					for(int i = 0; i < input.length(); i++)
 					{
 						for(int j = countInOrder; j < days.length(); j++)
 						{
-							if(input.charAt(i)==days.charAt(j))
+							if(input.charAt(i)==days.charAt(j) && !matchThisPos)
 							{
 								matchCount++;
-								countInOrder= j;
+								countInOrder= j+1;
+								matchThisPos=true;
 							}
 						}
+						matchThisPos=false;
 					}
 					if(matchCount==input.length()){
 						isValid=true;
