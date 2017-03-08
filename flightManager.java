@@ -172,6 +172,10 @@ public class flightManager
 							isValid = true;
 						}
 					}
+					int inputNum=Integer.parseInt(input);
+					if(inputNum>=2400 ||inputNum%100>=60){
+						isValid = false;
+					}
 					break;
 				case 3:       
 					validateOf = "DaysRunning";
