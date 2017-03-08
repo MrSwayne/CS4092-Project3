@@ -111,7 +111,7 @@ public class flightManager
 				case 1:       
 					validationOf = "airportName";
 					
-					String pattern  = "[a-zA-Z//s]";
+					String pattern  = "[a-zA-Z//s]*";
 						
 					if(input != null && input.length() != 0)
 					{
