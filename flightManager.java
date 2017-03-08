@@ -16,11 +16,12 @@ public class flightManager
         public static void main(String[] args) 
 	{
                 boolean isFiles = validateFiles();
-		readInFiles();
-		programLauncher(args);
+		if(isFiles){
+			readInFiles();
+			programLauncher(args);
 		
 		
-		
+		}
         }
 	
         /*
@@ -92,14 +93,28 @@ public class flightManager
         
 	public static boolean validateAirport(String airportCode, int num)
 	{
-		String validateOf;
+		String validationOf;
+		boolean isValid=false
 		switch(num)
 			{
-				case 1:       validateOf = "airportName"; break;
-				case 2:       validateOf = "airportCode"; break;
-				default:      System.out.print("error 3 \nValidation incomplete");
+				case 1:       
+					validationOf = "airportName"; 
+					break;
+					
+				case 2:       
+					validationOf = "airportCode";
+					isValid=true;
+					
+					for (int i=0; i<airportCode.length(); i++){
+						if (!Character.isUpperCase(airportCode.charAt(i))) isValid= false;
+					}
+					if (airportCode.length()!=3) isValid= false;
+					break;
+					
+				default:      
+					System.out.print("error 3 \nValidation incomplete");
 			}
-		return true;
+		return isValid;
         }
         
          /*
@@ -110,17 +125,36 @@ public class flightManager
         
 	public static boolean validateFlight(String input, int num)
 	{
+		
 		String validateOf;
 		switch(num)
 			{
-				case 1:       validateOf = "flightNum"; break;
-				case 2:       validateOf = "DepartAirportCode"; break;
-				case 3:       validateOf = "ArriveAirportCode"; break;
-				case 4:       validateOf = "DepartureTime"; break;
-				case 5:       validateOf = "ArrivalTime"; break;
-				case 6:       validateOf = "DaysRunning"; break;
-				case 7:       validateOf = "StartDate"; break;
-				case 8:       validateOf = "EndDate"; break;
+				case 1:{       
+					validateOf = "flightNum";
+					
+					break;
+				case 2:       
+					validateOf = "DepartAirportCode";
+					
+					break;
+				case 3:       
+					validateOf = "ArriveAirportCode"; 
+					break;
+				case 4:       
+					validateOf = "DepartureTime"; 
+					break;
+				case 5:       
+					validateOf = "ArrivalTime"; 
+					break;
+				case 6:       
+					validateOf = "DaysRunning"; 
+					break;
+				case 7:       
+					validateOf = "StartDate"; 
+					break;
+				case 8:       
+					validateOf = "EndDate"; 
+					break;
 				default:      System.out.print("error 3 \nValidation incomplete");
 			}
 		return true;
