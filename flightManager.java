@@ -111,7 +111,7 @@ public class flightManager
 		if(airportFile.exists() && flightFile.exists())			 			return true;
 		else airportFile.createNewFile();	flightFile.createNewFile();		return true;
 
-    }
+	}
         
          /*
 	@authors Ian McKay & Adam Swayne 
@@ -124,35 +124,36 @@ public class flightManager
 		String validationOf;
 		boolean isValid=false;
 		switch(num)
-			{
-				case 1:       
-					validationOf = "airportName";
+		{
+			case 1:       
+				validationOf = "airportName";
 					
-					String pattern  = "[a-zA-Z\\s]*";
+				String pattern  = "[a-zA-Z\\s]*";
 						
-					if(input != null && input.length() != 0)
+				if(input != null && input.length() != 0)
+				{
+					if(input.matches(pattern))
 					{
-						if(input.matches(pattern))
-						{
-							isValid = true;
-						}
+						isValid = true;
 					}
-					break;
+				}
+				break;
 					
-				case 2:       
-					validationOf = "airportCode";
-					isValid=true;
+			case 2:       
+				validationOf = "airportCode";
+				isValid=true;
 					
-					for (int i=0; i<input.length(); i++){
-						if (!Character.isUpperCase(input.charAt(i))) isValid= false;
-					}
-					if (input.length()!=3) isValid= false;
-					break;
+				for (int i=0; i<input.length(); i++){
+					if (!Character.isUpperCase(input.charAt(i))) isValid= false;
+				}
+				if (input.length()!=3) isValid= false;
+				break;
 					
-				default:      System.out.print("error 3 \nValidation incomplete");
-			}
+			default:      errorMessege(3);
+		}
 		return isValid;
-      }
+	}
+	
         
          /*
 	@authors Ian McKay
@@ -160,6 +161,7 @@ public class flightManager
         Output:
 	*/
         
+	
 	public static boolean validateFlight(String input, int num)
 	{
 		String pattern;
@@ -167,78 +169,99 @@ public class flightManager
 		boolean isValid = false;
 		
 		switch(num)
-			{
-				case 1:       
-					validateOf = "flightNum";
-					pattern="[A-Z][A-Z]\\d\\d\\d\\d";
-					if(input != null && input.length() != 0)
+		{
+			case 1:       
+				validateOf = "flightNum";
+				pattern="[A-Z][A-Z]\\d\\d\\d\\d";
+				if(input != null && input.length() != 0)
+				{
+					if(input.matches(pattern))
 					{
-						if(input.matches(pattern))
-						{
-							isValid = true;
-						}
+						isValid = true;
 					}
-					break;
-				case 2:       
-					validateOf = "DepartureArrivalTime";
-					pattern="\\d\\d\\d\\d";
-					if(input != null && input.length() != 0)
+				}
+				break;
+			case 2:       
+				validateOf = "DepartureArrivalTime";
+				pattern="\\d\\d\\d\\d";
+				if(input != null && input.length() != 0)
+				{
+					if(input.matches(pattern))
 					{
-						if(input.matches(pattern))
-						{
-							isValid = true;
-						}
+						isValid = true;
 					}
-					int inputNum=Integer.parseInt(input);
-					if(inputNum>=2400 ||inputNum%100>=60){
-						isValid = false;
-					}
-					break;
-				case 3:       
-					validateOf = "DaysRunning";
-					String days = "-MTWTFSS-";
-					int countInOrder=0;
-					int matchCount=0;
-					boolean matchThisPos=false;
-					
-					for(int i = 0; i < input.length(); i++)
-					{
-						for(int j = countInOrder; j < days.length(); j++)
-						{
-							if(input.charAt(i)==days.charAt(j) && !matchThisPos)
-							{
-								matchCount++;
-								countInOrder= j+1;
-								matchThisPos=true;
-							}
-						}
-						matchThisPos=false;
-					}
-					if(matchCount==input.length()){
-						isValid=true;
-					}
-					break;
-				case 4:       
-					validateOf = "StartEndDate";
-					String dateElements[];
-					int ddInt, mmInt, yyInt;
-					int[] daysArray = {31,28,31,30,31,30,31,31,30,31,30,31};
-					boolean dateIsValid = true;
-					dateElements = input.split("//");
-					ddInt= Integer.parseInt(dateElements[0]);
-					mmInt= Integer.parseInt(dateElements[1]);
-					yyInt= Integer.parseInt(dateElements[2]);
-					if(ddInt == 0 || mmInt == 0 || yyInt == 0)dateIsValid =false;
-					else if(mmInt > 12)dateIsValid =false;
-					else if(ddInt == 29 && mmInt == 2 && ((yyInt % 4 == 0 && yyInt % 100 != 0) || (yyInt % 400 == 0))dateIsValid =true;
-					else if(ddInt > daysArray[mmInt -1])dateIsValid =false;
-					break;
+				}
+				int inputNum=Integer.parseInt(input);
+				if(inputNum>=2400 ||inputNum%100>=60)
+				{
+					isValid = false;
+				}
+				break;
+			case 3:       
+				validateOf = "DaysRunning";
+				String days = "-MTWTFSS-";
+				int countInOrder=0;
+				int matchCount=0;
+				boolean matchThisPos=false;
 				
-				default:      System.out.print("error 3 \nValidation incomplete");
+				for(int i = 0; i < input.length(); i++)
+				{
+					for(int j = countInOrder; j < days.length(); j++)
+					{
+						if(input.charAt(i)==days.charAt(j) && !matchThisPos)
+						{
+							matchCount++;
+							countInOrder= j+1;
+							matchThisPos=true;
+						}
+					}
+					matchThisPos=false;
+				}
+				if(matchCount==input.length())
+				{
+					isValid=true;
+				}
+					break;
+			case 4:       
+				validateOf = "StartEndDate";
+				String dateElements[];
+				int ddInt, mmInt, yyInt;
+				int[] daysArray = {31,28,31,30,31,30,31,31,30,31,30,31};
+				boolean dateIsValid = true;
+				dateElements = input.split("//");
+				ddInt= Integer.parseInt(dateElements[0]);
+				mmInt= Integer.parseInt(dateElements[1]);
+				yyInt= Integer.parseInt(dateElements[2]);
+				if(ddInt == 0 || mmInt == 0 || yyInt == 0)dateIsValid =false;
+				else if(mmInt > 12)dateIsValid =false;
+				else if(ddInt == 29 && mmInt == 2 && ((yyInt % 4 == 0 && yyInt % 100 != 0) || (yyInt % 400 == 0))dateIsValid =true;
+				else if(ddInt > daysArray[mmInt -1])dateIsValid =false;
+				break;
+				
+				default:      errorMessege(3);
 			}
 		return isValid;
         
-      }
+	}
+					
+	public static void errorMessege(int errorNum)
+	{
+		switch(errorNum)
+		{
+			case 1:System.out.print("Validation incomplete"); break;
+			case 2:System.out.print("Validation incomplete"); break;
+			case 3: System.out.print("Validation incomplete"); break;
+			case 4:System.out.print("Validation incomplete"); break;
+			case 5:System.out.print("Validation incomplete"); break;
+			case 6:System.out.print("Validation incomplete"); break;
+			default: System.out.print("Validation incomplete"); break;
+		}
+	
+	}
+
+						
+						
+						
         
          /*
 	@authors Ian McKay &
