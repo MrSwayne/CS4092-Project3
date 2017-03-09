@@ -214,7 +214,21 @@ public class Project3
 					}
 					break;
 				case 4:       
-					validateOf = "StartEndDate"; 
+					validateOf = "StartEndDate";
+					String dateElements[];
+					int ddInt, mmInt, yyIny;
+					int[] daysArray = {31,28,31,30,31,30,31,31,30,31};
+					isValid=true;
+					dateElements = input.split("//");
+					ddInt = Integer.parseInt(dateElements[0]);
+					mmInt = Integer.parseInt(dateElements[1]);
+					yyInt = Integer.parseInt(dateElements[2]);
+					if ((ddInt == 0) || (mmInt == 0) || (yyInt ==0)) isValid=false;
+					else if (mmInt > 12) isValid=false;
+					else if (ddInt == 29 && mmInt == 2 && ((((yyInt % 4 ==0) && (yyInt % 100 != 0)) || 
+										(yyInt %400 ==0))))  isValid=true;
+					else if (ddInt> daysArray[mmInt-1])  isValid=false;
+					
 					break;
 				
 				default:      System.out.print("error 3 \nValidation incomplete");
