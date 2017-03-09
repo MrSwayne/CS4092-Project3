@@ -248,13 +248,14 @@ public class flightManager
 	{
 		switch(errorNum)
 		{
-			case 1:System.out.print("Validation incomplete"); break;
-			case 2:System.out.print("Validation incomplete"); break;
-			case 3: System.out.print("Validation incomplete"); break;
-			case 4:System.out.print("Validation incomplete"); break;
-			case 5:System.out.print("Validation incomplete"); break;
-			case 6:System.out.print("Validation incomplete"); break;
-			default: System.out.print("Validation incomplete"); break;
+			case 1:System.out.print("Invalid number of command-line arguments."); break;
+			case 2:System.out.print("Invalid first command-line argument."); break;
+			case 3: System.out.print("Airport code must be three alphabetic characters in length."); break;
+			case 4:System.out.print("File named Airports.txt does not exist."); break;
+			case 5:System.out.print("Airport already exists."); break;
+			case 6:System.out.print("Airport details added"); break;
+			case 7:System.out.print("Validation Incomplete"); break;
+			default: System.out.print("error not caught"); break;
 		}
 	
 	}
@@ -295,13 +296,13 @@ public class flightManager
 				case "DF":       deleteFlight(input[1]); break;
 				case "SF":       searchFlight(input[1],input[2]); break;
 				case "SD":       searchDate(input[1],input[2],input[3]); break;
-				default:         System.out.print("error 2 \n method " + input[0] + " not found");
-			}
-			
+				case "help":	 displayInstructions();
+				default:         errorMessege(2);
+			}	
 		}
 		catch(ArrayIndexOutOfBoundsException exception)
 		{
-			System.out.print("error 1 \nNot enough objects to pass into program");
+			errorMessege(1);
 		}
      }
         
