@@ -110,6 +110,7 @@ public class flightManager
 			
 		if(airportFile.exists() && flightFile.exists())			 			return true;
 		else airportFile.createNewFile();	flightFile.createNewFile();		return true;
+		return false;
 
 	}
         
@@ -234,7 +235,7 @@ public class flightManager
 				yyInt= Integer.parseInt(dateElements[2]);
 				if(ddInt == 0 || mmInt == 0 || yyInt == 0)dateIsValid =false;
 				else if(mmInt > 12)dateIsValid =false;
-				else if(ddInt == 29 && mmInt == 2 && ((yyInt % 4 == 0 && yyInt % 100 != 0) || (yyInt % 400 == 0))dateIsValid =true;
+				else if(ddInt == 29 && mmInt == 2 && ((yyInt % 4 == 0 && yyInt % 100 != 0) || (yyInt % 400 == 0)))dateIsValid =true;
 				else if(ddInt > daysArray[mmInt -1])dateIsValid =false;
 				break;
 				
