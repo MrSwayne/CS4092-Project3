@@ -219,7 +219,19 @@ public class flightManager
 					}
 					break;
 				case 4:       
-					validateOf = "StartEndDate"; 
+					validateOf = "StartEndDate";
+					String dateElements[];
+					int ddInt, mmInt, yyInt;
+					int[] daysArray = {31,28,31,30,31,30,31,31,30,31,30,31};
+					boolean dateIsValid = true;
+					dateElements = input.split("//");
+					ddInt= Integer.parseInt(dateElements[0]);
+					mmInt= Integer.parseInt(dateElements[1]);
+					yyInt= Integer.parseInt(dateElements[2]);
+					if(ddInt == 0 || mmInt == 0 || yyInt == 0)dateIsValid =false;
+					else if(mmInt > 12)dateIsValid =false;
+					else if(ddInt == 29 && mmInt == 2 && ((yyInt % 4 == 0 && yyInt % 100 != 0) || (yyInt % 400 == 0))dateIsValid =true;
+					else if(ddInt > daysArray[mmInt -1])dateIsValid =false;
 					break;
 				
 				default:      System.out.print("error 3 \nValidation incomplete");
