@@ -391,20 +391,65 @@ public class flightManager
 	*/
         
         public static void sortFiles()
-	{
-			//Going to bubble sort the airportList and flightList in these for loops
-			for(int i = 0;i < airportList.size();i++)
+	{	
+		String[] temp;
+		for(int i = 0;i < airportList.size();i++)
+		{
+			for(int j = i + 1;j < airportList.size();j++)
 			{
-				for(int j = i + 1; j < airportList.size() - i;j++)
+				if(airportList.get(i).get(0).compareToIgnoreCase(airportList.get(j).get(0)) > 0)
 				{
-
+					for(int x = 0; x < airportList.get(i).size() - 1;x++ )
+					{
+						temp = new String[airportList.get(i).size()];
+						
+						temp[x] = airportList.get(i).get(x);
+						temp[x + 1] = airportList.get(i).get(x + 1);
+						
+						airportList.get(i).set(x,airportList.get(j).get(x));
+						airportList.get(i).set(x + 1,airportList.get(j).get(x + 1));
+						
+						airportList.get(j).set(x, temp[x]);
+						airportList.get(j).set(x + 1, temp[x + 1]);						
+					}
 				}
 			}
-			
+		}
+		
+		String[] temp2;
+		for(int i = 0;i < flightList.size();i++)
+		{
+			for(int j = i + 1;j < flightList.size();j++)
+			{
+				if(flightList.get(i).get(0).compareToIgnoreCase(flightList.get(j).get(0)) > 0)
+				{
+					for(int x = 0; x < flightList.get(i).size() - 1;x++ )
+					{
+						temp2 = new String[flightList.get(i).size()];
+						
+						temp2[x] = flightList.get(i).get(x);
+						temp2[x + 1] = flightList.get(i).get(x + 1);
+						
+						flightList.get(i).set(x,flightList.get(j).get(x));
+						flightList.get(i).set(x + 1,flightList.get(j).get(x + 1));
+						
+						flightList.get(j).set(x, temp2[x]);
+						flightList.get(j).set(x + 1, temp2[x + 1]);						
+					}
+				}
+			}
+		}
+		
+		for(int i = 0;i < airportList.size();i++)
+			System.out.println(airportList.get(i));
+		
+		for(int i = 0;i < flightList.size();i++)
+			System.out.println(flightList.size());
+		
 			
 		writeToAirports();
 		writeToFlights();
-        }
+       }
         
         /*
 	@authors Ian McKay
