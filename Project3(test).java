@@ -216,7 +216,7 @@ public class Project3
 				case 4:       
 					validateOf = "StartEndDate";
 					String dateElements[];
-					int ddInt, mmInt, yyIny;
+					int ddInt, mmInt, yyInt;
 					int[] daysArray = {31,28,31,30,31,30,31,31,30,31};
 					isValid=true;
 					dateElements = input.split("//");
