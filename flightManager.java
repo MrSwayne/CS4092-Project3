@@ -16,8 +16,8 @@ public class flightManager
 	deleteFlight()    medium difficulty
 	searchFlight()    medium difficulty
 	searchDate()      medium difficulty
-	sortList()        hard, Adams got it
-	
+
+
 	FYI: the validation methods do not display errors if validation is false,
 	it only return true or false, please handle and output all error messeges 
 	within your function on a case by case basis
