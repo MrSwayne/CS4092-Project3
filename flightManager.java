@@ -305,6 +305,7 @@ public class flightManager
 		{
 			errorMessege(1);
 		}
+		sortFiles();
      }
         
         /*
