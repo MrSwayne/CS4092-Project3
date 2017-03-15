@@ -9,12 +9,11 @@ public class flightManager
 	/*
 	TODO List:
 	validateFlight()  only case 4 validation left
-	addAirport()      simple
-	editAirport()     simple
-	editFlight()      medium difficulty
-	deleteFlight()    medium difficulty
-	searchFlight()    medium difficulty
-	searchDate()      medium difficulty
+	addAirport()      simple (Ibrahim)
+	editAirport()     simple (Ibrahim)
+	editFlight()      medium difficulty (Matthew)
+	deleteFlight()    medium difficulty (Matthew)
+	searchDate()      hard difficulty (Adam)
 
 
 	FYI: the validation methods do not display errors if validation is false,
@@ -341,16 +340,14 @@ public class flightManager
 		if(validateAirport(airportCode, 2))
 		{
 			boolean isFound =false;
+			boolean flightToDelete=false;
 			int rowFound=0;
 			for (int i = 0; i <airportList.size(); i++)
 			{
-				for(int j = 1; j<airportList.get(i).size();j++)
+				if(airportList.get(i).get(1).equals(airportCode))
 				{
-					if(airportList.get(i).get(j).equals(airportCode))
-					{
-						isFound=true;
-						rowFound=i;
-					}
+					isFound=true;
+					rowFound=i;
 				}
 			}
 			if(isFound)
@@ -363,20 +360,27 @@ public class flightManager
 						if(flightList.get(i).get(j).equals(airportCode))
 						{
 							rowFound=i;
+							flightToDelete=true;
+							System.out.println(i);
 						}
 					}
-					flightList.remove(rowFound);
+					if(flightToDelete)
+					{
+						flightList.remove(rowFound);
+						flightToDelete=false;
+						i--;
+					}
 				}
 			}
-			else{
+			else
+			{
 				errorMessege(8);
 			}
 		}
 		else
 		{
 			errorMessege(3);
-		}
-        	
+		}	
         }
         
         /*
@@ -409,7 +413,47 @@ public class flightManager
         
         public static void searchFlight(String airportDepart,String airportArrive)
 	{
-		
+		if(validateAirport(airportDepart, 1)&& validateAirport(airportArrive,1))
+		{
+			boolean departFound =false;
+			boolean arriveFound =false;
+			String result = "";
+			String departCode = "";
+			String arriveCode = "";
+			for (int i = 0; i <airportList.size(); i++)
+			{
+				if(airportList.get(i).get(0).equals(airportDepart)
+				{
+					departCode= airportList.get(i).get(1);
+					departFound=true;
+				}
+				if(airportList.get(i).get(0).equals(airportArrive))
+				{
+					arriveCode= airportList.get(i).get(1);
+					arriveFound=true;
+				}
+			}            
+			if(departFound && arriveFound)
+			{
+				System.out.println("The Following Flight(s) depart from " + airportDepart + " and arrive in " + airportArrive + ".");
+				for (int i = 0; i <flightList.size(); i++)
+				{
+					if(flightList.get(i).get(2).equals(arriveCode)&& flightList.get(i).get(1).equals(departCode))
+					{
+						System.out.println(flightList.get(i));
+					}
+				}
+			}
+			else
+			{
+				if(!departFound)errorMessege(9);
+				if(!arriveFound)errorMessege(10);
+			}
+		}
+		else 
+		{
+			errorMessege(11);
+		}
 
         }
         
