@@ -11,7 +11,6 @@ public class flightManager
 	validateFlight()  only case 4 validation left
 	addAirport()      simple
 	editAirport()     simple
-	deleteAirport()   complex lots of deleting
 	editFlight()      medium difficulty
 	deleteFlight()    medium difficulty
 	searchFlight()    medium difficulty
@@ -337,6 +336,44 @@ public class flightManager
         
         public static void deleteAirport(String airportCode)
 	{
+		if(validateAirport(airportCode, 2))
+		{
+			boolean isFound =false;
+			int rowFound=0;
+			for (int i = 0; i <airportList.size(); i++)
+			{
+				for(int j = 1; j<airportList.get(i).size();j++)
+				{
+					if(airportList.get(i).get(j).equals(airportCode))
+					{
+						isFound=true;
+						rowFound=i;
+					}
+				}
+			}
+			if(isFound)
+			{
+				airportList.remove(rowFound);
+				for (int i = 0; i <flightList.size(); i++)
+				{
+					for(int j = 0; j<flightList.get(i).size();j++)
+					{
+						if(flightList.get(i).get(j).equals(airportCode))
+						{
+							rowFound=i;
+						}
+					}
+					flightList.remove(rowFound);
+				}
+			}
+			else{
+				errorMessege(8);
+			}
+		}
+		else
+		{
+			errorMessege(3);
+		}
         	
         }
         
