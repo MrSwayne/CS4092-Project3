@@ -255,6 +255,7 @@ public class flightManager
 			case 5:System.out.print("Airport already exists."); break;
 			case 6:System.out.print("Airport details added"); break;
 			case 7:System.out.print("Validation Incomplete"); break;
+			case 8:System.out.print("Airport code not found"); break;
 			default: System.out.print("error not caught"); break;
 		}
 	
@@ -262,7 +263,7 @@ public class flightManager
 	public static void displayInstructions() 
 	{ 
 		System.out.println(""); 
-		System.out.println("************************ ASSiStance *****************************************************");
+		System.out.println("************************ Assistance *****************************************************");
 		System.out.println("Add new airport               e.g. java FlightManager AA Lisbon LIS"); 
 		System.out.println("Edit airport                  e.g. java FlightManager EA BHD Belfast");
 		System.out.println("Delete airport                e.g. java FlightManager DA SNN"); 
