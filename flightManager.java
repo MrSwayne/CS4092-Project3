@@ -263,7 +263,8 @@ public class flightManager
 			case 8:System.out.print("Airport code not found"); break;
 			default: System.out.print("error not caught"); break;
 		}
-	
+		System.out.println("");
+		System.out.println("Type 'java flightManager help' for examples.");
 	}
 	public static void displayInstructions() 
 	{ 
@@ -293,7 +294,7 @@ public class flightManager
 		
 		try 
 		{
-			switch(input[0])
+			switch(input[0].toUpperCase())
 			{
 				case "AA":       addAirport(input[1],input[2]); break;
 				case "EA":       editAirport(input[1],input[2]); break;
@@ -412,15 +413,9 @@ public class flightManager
 					}
 				}
 			}
-			else
-			{
-				errorMessege(8);
-			}
+			else errorMessege(8);
 		}
-		else
-		{
-			errorMessege(3);
-		}	
+		else errorMessege(3);	
         }
         
         /*
@@ -490,11 +485,7 @@ public class flightManager
 				if(!arriveFound)errorMessege(10);
 			}
 		}
-		else 
-		{
-			errorMessege(11);
-		}
-
+		else errorMessege(11);
         }
         
         /*
