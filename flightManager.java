@@ -351,6 +351,16 @@ public class flightManager
         public static void editAirport(String airportCode,String airport)
 	{
         	
+        readInFiles();
+			System.out.printf("editing airport" + airportList.size());
+        	for(int i=0;i<airportList.get(0).size();i++)
+			{
+				if(airportList.get(1).get(i).equals(airportCode)){
+					airportList.get(1).set(i,airportCode);
+					System.out.printf("airport name changed ");
+				}
+			
+			}
         }
         
         /*
