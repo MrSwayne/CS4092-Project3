@@ -154,7 +154,7 @@ public class flightManager
 				if (input.length()!=3) isValid= false;
 				break;
 					
-			default:      errorMessege(3);
+			default:      errorMessage(3);
 		}
 		return isValid;
 	}
@@ -243,13 +243,13 @@ public class flightManager
 				else if(ddInt > daysArray[mmInt -1])dateIsValid =false;
 				break;
 				
-				default:      errorMessege(3);
+				default:      errorMessage(3);
 			}
 		return isValid;
         
 	}
 					
-	public static void errorMessege(int errorNum)
+	public static void errorMessage(int errorNum)
 	{
 		switch(errorNum)
 		{
@@ -263,8 +263,6 @@ public class flightManager
 			case 8:System.out.print("Airport code not found"); break;
 			default: System.out.print("error not caught"); break;
 		}
-		System.out.println("");
-		System.out.println("Type 'java flightManager help' for examples.");
 	}
 	public static void displayInstructions() 
 	{ 
@@ -294,7 +292,7 @@ public class flightManager
 		
 		try 
 		{
-			switch(input[0].toUpperCase())
+			switch(input[0])
 			{
 				case "AA":       addAirport(input[1],input[2]); break;
 				case "EA":       editAirport(input[1],input[2]); break;
@@ -304,12 +302,12 @@ public class flightManager
 				case "SF":       searchFlight(input[1],input[2]); break;
 				case "SD":       searchDate(input[1],input[2],input[3]); break;
 				case "help":	 displayInstructions();
-				default:         errorMessege(2);
+				default:         errorMessage(2);
 			}	
 		}
 		catch(ArrayIndexOutOfBoundsException exception)
 		{
-			errorMessege(1);
+			errorMessage(1);
 		}
 		sortFiles();
      }
@@ -413,9 +411,15 @@ public class flightManager
 					}
 				}
 			}
-			else errorMessege(8);
+			else
+			{
+				errorMessage(8);
+			}
 		}
-		else errorMessege(3);	
+		else
+		{
+			errorMessage(3);
+		}	
         }
         
         /*
@@ -455,6 +459,8 @@ public class flightManager
 			String result = "";
 			String departCode = "";
 			String arriveCode = "";
+
+			
 			for (int i = 0; i <airportList.size(); i++)
 			{
 				if(airportList.get(i).get(0).equals(airportDepart))
@@ -481,23 +487,68 @@ public class flightManager
 			}
 			else
 			{
-				if(!departFound)errorMessege(9);
-				if(!arriveFound)errorMessege(10);
+				if(!departFound)errorMessage(9);
+				if(!arriveFound)errorMessage(10);
 			}
 		}
-		else errorMessege(11);
+		else 
+		{
+			errorMessage(11);
+		}
+
         }
         
-        /*
-	@authors 
-	Input: 
-        Output:
-	*/
+		/*
+			@author Adam Swayne
+			Input: 
+			Output:
+		*/
         
         public static void searchDate(String airportDepart,String airportArrive, String date)
-	{
-		
-        }
+		{
+			boolean stop = false;
+			int[] numbers = new int[flightList.size()];
+			String airportDepartCode = "", airportArriveCode = "";
+			int counter = 0;
+			
+			//Finds the corresponding airport code to the airports supplied
+			for(int i = 0;i < airportList.size() && !stop; i++)
+			{
+				if (airportDepart.equalsIgnoreCase(airportList.get(i).get(0)))		airportDepartCode += airportList.get(i).get(1);
+				if(airportArrive.equalsIgnoreCase(airportList.get(i).get(0)))			airportArriveCode += airportList.get(i).get(1);	
+				
+				//once both airports have been found, it should break out of the loop
+				if ((!(airportDepartCode.equals(""))) && (!(airportArriveCode.equals(""))))		stop = true;
+			}
+				//if an airport isnt found in the textfile, then an error message is outputted to the user
+			if(airportDepartCode.equals(""))				System.out.println("Error, " + airportDepart + " airport not found in Airports.txt");
+			else if(airportArriveCode.equals(""))		System.out.println("Error, " + airportArrive + " airport not found in Airports.txt");
+			
+			else
+			{
+				for(int i = 0;i < flightList.size();i++)
+				{
+					//go through all of the arrayList and check if the arrival/departing airport and the date matches what's on file, if it does, then the index of that is put into an array so I can call it again later on
+					if((flightList.get(i).get(1).equalsIgnoreCase(airportDepartCode)) && (flightList.get(i).get(2).equalsIgnoreCase(airportArriveCode)) && (flightList.get(i).get(6).equalsIgnoreCase(date)))
+					{
+						numbers[counter] = i;
+						counter++;
+					}
+					
+				}
+				//Print out how many flights were found corresponding to search criteria
+				if(counter == 1)	System.out.println("There was only 1 flight found matching that criteria.");
+				else 						System.out.println("There were " + (counter) + " flights found matching that criteria.");
+				
+				for(int i = 0; i < counter; i++)
+				{
+					//Output the textfile data to the user
+					System.out.println((i + 1) + ".\nFlight Number   :\t"  + flightList.get(numbers[i]).get(0) + 
+																	"\nDeparting from  :\t"   + airportDepart + "\t\tAt : " + flightList.get(numbers[i]).get(3) + "\tOn : " + flightList.get(numbers[i]).get(6) + 
+																	"\nArriving to     :\t"        + airportArrive   + "\t\tAt : " + flightList.get(numbers[i]).get(4) + "\tOn : " + flightList.get(numbers[i]).get(7));
+				}	
+			}
+		}
 	
 	/*
 	@authors Adam Swayne
@@ -546,12 +597,6 @@ public class flightManager
 			}
 		}
 		
-		//tester code
-		for(int i = 0;i < airportList.size();i++)
-			System.out.println(airportList.get(i));
-		//tester code
-		for(int i = 0;i < flightList.size();i++)
-			System.out.println(flightList.get(i));
 		
 		writeToAirports();
 		writeToFlights();
