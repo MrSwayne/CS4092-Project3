@@ -33,6 +33,7 @@ public class flightManager
                 boolean isFiles = validateFiles();
 		if(isFiles)
 		{
+			displayInstructions();
 			readInFiles();
 			programLauncher(args);
 		}		
@@ -103,13 +104,18 @@ public class flightManager
         
         public static boolean validateFiles()
 	{
+		try
+		{
 		File airportFile = new File("Airports.txt");
 		File flightFile = new File("Flights.txt");
-			
-		if(airportFile.exists() && flightFile.exists())			 			return true;
-		else airportFile.createNewFile();	flightFile.createNewFile();		return true;
-		return false;
-
+		if(airportFile.exists() && flightFile.exists())			 									return true;
+		else airportFile.createNewFile();	flightFile.createNewFile();		
+		}
+		catch(IOException e)
+		{
+			System.out.print("Error, " + e.getMessage());
+		}
+		return true;
 	}
         
          /*
@@ -351,14 +357,13 @@ public class flightManager
         public static void editAirport(String airportCode,String airport)
 	{
         	
-        
-		System.out.printf("editing airport" + airportList.size());
+
+			System.out.println("editing airport");
         	for(int i=0;i<airportList.get(0).size();i++)
 			{
-			if(airportList.get(1).get(i).equals(airportCode))
-				{
-				airportList.get(1).set(i,airportCode);
-				System.out.printf("airport name changed ");
+				if(airportList.get(1).get(i).equals(airportCode)){
+					airportList.get(1).set(i,airportCode);
+					System.out.printf("airport name changed ");
 				}
 			
 			}
@@ -457,7 +462,7 @@ public class flightManager
 			String arriveCode = "";
 			for (int i = 0; i <airportList.size(); i++)
 			{
-				if(airportList.get(i).get(0).equals(airportDepart)
+				if(airportList.get(i).get(0).equals(airportDepart))
 				{
 					departCode= airportList.get(i).get(1);
 					departFound=true;
