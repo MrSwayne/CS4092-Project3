@@ -142,6 +142,10 @@ public class flightManager
 						isValid = true;
 					}
 				}
+				if(validateAirport(input,2))
+				{
+					isValid=false;
+				}
 				
 				break;
 					
@@ -153,10 +157,7 @@ public class flightManager
 					if (!Character.isUpperCase(input.charAt(i))) isValid= false;
 				}
 				if (input.length()!=3) isValid= false;
-				if(validateAirport(input,1))
-				{
-					isValid=false;
-				}
+				
 				break;
 					
 			default:      errorMessage(3);
