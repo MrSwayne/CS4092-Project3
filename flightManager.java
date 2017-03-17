@@ -359,35 +359,35 @@ public class flightManager
 	*/
         
 	public static void editAirport(String airportCode,String airport)
+	{
+		boolean isValid=false; //create a boolean
+		String temp; //intialize temp for sorting airport and code
+		if(validateAirport(airport,1) && validateAirport(airportCode,2))
+		isValid=true;// if in the correct order isValid is set to true
+		if(validateAirport(airport,2) && validateAirport(airportCode,1))
 		{
-			boolean isValid=false; //create a boolean
-			String temp; //intialize temp for sorting airport and code
-			if(validateAirport(airport,1) && validateAirport(airportCode,2))
-			isValid=true;// if in the correct order isValid is set to true
-			if(validateAirport(airport,2) && validateAirport(airportCode,1))
-				{
-					temp=airport;
-					airport=airportCode;
-					airportCode=temp;
-					isValid=true; //if not, then we sort it.
-				}
-				else
-				{ 
-				errorMessege(8);
-				isValid=false; //else we deplay an error
-				}
+			temp=airport;
+			airport=airportCode;
+			airportCode=temp;
+			isValid=true; //if not, then we sort it.
+		}
+			else
+			{ 
+			errorMessege(8);
+			isValid=false; //else we deplay an error
+			}
 					 
 				if(isValid)// once it is valid we can enter the loop to edit airport list
 				{
 				for(int i=0;i<airportList.size();i++) //loops through airportList
+				{
+					if(airportList.get(i).get(1).equals(airportCode))//checks if they match once again after sorting
 					{
-						if(airportList.get(i).get(1).equals(airportCode))//checks if they match once again after sorting
-						{
-							if(airportList.get(i).get(0).equals(airport)) errorMessage(5);//if they match show appropriate messege
-							else airportList.get(i).set(0,airport); //else add new airport
-						}
-					}	
-				}
+						if(airportList.get(i).get(0).equals(airport)) errorMessage(5);//if they match show appropriate messege
+						else airportList.get(i).set(0,airport); //else add new airport
+					}
+				}	
+			}
 		}
         
         /*
