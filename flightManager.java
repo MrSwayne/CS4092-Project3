@@ -142,6 +142,10 @@ public class flightManager
 						isValid = true;
 					}
 				}
+				if(validateAirport(input,2))
+				{
+					isValid=false;
+				}
 				break;
 					
 			case 2:       
