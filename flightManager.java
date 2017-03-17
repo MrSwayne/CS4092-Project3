@@ -269,6 +269,7 @@ public class flightManager
 			case 8:System.out.print("Airport code not found"); break;
 			default: System.out.print("error not caught"); break;
 		}
+		System.out.print("Launch this program using the 'help' method to see eaxmples"); 
 	}
 	public static void displayInstructions() 
 	{ 
