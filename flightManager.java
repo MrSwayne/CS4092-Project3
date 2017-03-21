@@ -450,10 +450,33 @@ public class flightManager
         Output:
 	*/
         
-        public static void editFlight(String flightNum,String flightDays, String startFlight, String endFlight)
-	{
-        	
-        }
+ public static void editFlight(String flightNum,String flightDays,String startTimeFlight,String endTimeFlight,String startDateFlight,String endDateFlight)
+{
+  boolean isValid = false; //create a boolean
+  if(validateFlight(flightNum,1) && validateFlight(startTimeFlight,2) && validateFlight(endTimeFlight,2) && validateFlight(flightDays,3) && validateFlight(startDateFlight,4) && validateFlight(endDateFlight,4));
+  {
+  isValid = true;
+  }
+  else
+  {
+    errorMessage(8);
+    isValid = false;
+  }
+  if(isValid)
+  {
+    for(int i =0; i < flightList.size(); i++)
+    {
+      if(flightList.get(i).equals(flightNum))
+      {
+        erorrMessage(5);
+      }
+      else
+      {
+        flightList.get(i).set(0,flightNum);
+      }
+    }
+  }
+}
         
         /*
 	@authors 
@@ -461,10 +484,53 @@ public class flightManager
         Output:
 	*/
         
-        public static void deleteFlight(String flightNum)
-	{
-
+   public static void deleteFlight(String flightNum)
+{
+  if(validateFlight(flightNum,1))
+  {
+    boolean isFound = false;
+    boolean flightToDelete = false;
+    int rowFound = 0;
+    for (int i = 0; i < flightList.size(); i++)
+    {
+      if(flightList.get(i).get(1).equals(flightNum))
+      {
+        isFound = true;
+        rowFound = true;
+      }
+    }
+    if(isFound)
+    {
+      flightList.remove(rowFound);
+      for (int i = 0; i < flightList.size(); i++)
+      {
+        for(int j = 0; j < flightList.get(i).size();j++)
+        {
+          if(flightList.get(i).get(j).equals(flightNum))
+          {
+            rowFound = i;
+            flightToDelete = true;
+            System.out.println(i);
+          }
         }
+        if(flightToDelete)
+        {
+          flightList.remove(rowFound);
+          flightToDelete = false;
+          i--;
+        }
+      }
+    }
+    else
+    {
+      errorMessage(8);
+    }
+  }
+  else
+  {
+    errorMessage(3);
+  }
+}
         
         /*
 	@authors 
