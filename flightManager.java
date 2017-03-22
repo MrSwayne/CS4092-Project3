@@ -453,7 +453,7 @@ public class flightManager
  public static void editFlight(String flightNum,String flightDays,String startTimeFlight,String endTimeFlight,String startDateFlight,String endDateFlight)
 {
   boolean isValid = false; //create a boolean
-  if(validateFlight(flightNum,1) && validateFlight(startTimeFlight,2) && validateFlight(endTimeFlight,2) && validateFlight(flightDays,3) && validateFlight(startDateFlight,4) && validateFlight(endDateFlight,4));
+  if(validateFlight(flightNum,1) && validateFlight(startTimeFlight,2) && validateFlight(endTimeFlight,2) && validateFlight(flightDays,3) && validateFlight(startDateFlight,4) && validateFlight(endDateFlight,4))
   {
   isValid = true;
   }
