@@ -267,6 +267,8 @@ public class flightManager
 			case 6:System.out.println("Airport details added"); break;
 			case 7:System.out.println("Validation Incomplete"); break;
 			case 8:System.out.println("Airport code not found"); break;
+			case 9:System.out.println("Departing Airport not found"); break;
+			case 10:System.out.println("Arrival Airport not found"); break;
 			default: System.out.println("error not caught"); break;
 		} 
 	}
