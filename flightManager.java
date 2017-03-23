@@ -239,7 +239,7 @@ public class flightManager
 				int ddInt, mmInt, yyInt;
 				int[] daysArray = {31,28,31,30,31,30,31,31,30,31,30,31};
 				boolean dateIsValid = true;
-				dateElements = input.split("//");
+				dateElements = input.split("/");
 				ddInt= Integer.parseInt(dateElements[0]);
 				mmInt= Integer.parseInt(dateElements[1]);
 				yyInt= Integer.parseInt(dateElements[2]);
@@ -259,17 +259,16 @@ public class flightManager
 	{
 		switch(errorNum)
 		{
-			case 1:System.out.print("Invalid number of command-line arguments."); break;
-			case 2:System.out.print("Invalid first command-line argument."); break;
-			case 3: System.out.print("Airport code must be three alphabetic characters in length."); break;
-			case 4:System.out.print("File named Airports.txt does not exist."); break;
-			case 5:System.out.print("Airport already exists."); break;
-			case 6:System.out.print("Airport details added"); break;
-			case 7:System.out.print("Validation Incomplete"); break;
-			case 8:System.out.print("Airport code not found"); break;
-			default: System.out.print("error not caught"); break;
-		}
-		System.out.print("Launch this program using the 'help' method to see eaxmples"); 
+			case 1:System.out.println("Invalid number of command-line arguments."); break;
+			case 2:System.out.println("Invalid first command-line argument."); break;
+			case 3: System.out.println("Airport code must be three alphabetic characters in length."); break;
+			case 4:System.out.println("File named Airports.txt does not exist."); break;
+			case 5:System.out.println("Airport already exists."); break;
+			case 6:System.out.println("Airport details added"); break;
+			case 7:System.out.println("Validation Incomplete"); break;
+			case 8:System.out.println("Airport code not found"); break;
+			default: System.out.println("error not caught"); break;
+		} 
 	}
 	public static void displayInstructions() 
 	{ 
@@ -347,9 +346,9 @@ public class flightManager
 						Entry.add(airportCode);
 						airportList.add(Entry);
 					}
-				else errorMessege(5);
+				else errorMessage(5);
 			}
-			else errorMessege(3);	
+			else errorMessage(3);	
         }
         
         /*
@@ -373,7 +372,7 @@ public class flightManager
 		}
 			else
 			{ 
-			errorMessege(8);
+			errorMessage(8);
 			isValid=false; //else we deplay an error
 			}
 					 
@@ -453,7 +452,7 @@ public class flightManager
 public static void editFlight(String flightNum,String flightDays,String startDateFlight,String endDateFlight)
 {
   boolean isValid = false; //create a boolean
-  if(validateFlight(flightNum,1)&& validateFlight(flightDays,3) && validateFlight(startDateFlight,4) && validateFlight(endDateFlight,4));
+  if(validateFlight(flightDays,3) && validateFlight(startDateFlight,4) && validateFlight(endDateFlight,4))
   {
 	isValid = true;
   }
@@ -468,7 +467,7 @@ public static void editFlight(String flightNum,String flightDays,String startDat
     {
       if(flightList.get(i).equals(flightNum))
       {
-        erorrMessage(5);
+        errorMessage(5);
       }
       else
       {
@@ -496,7 +495,6 @@ public static void editFlight(String flightNum,String flightDays,String startDat
       if(flightList.get(i).get(1).equals(flightNum))
       {
         isFound = true;
-        rowFound = true;
       }
     }
     if(isFound)
@@ -510,7 +508,6 @@ public static void editFlight(String flightNum,String flightDays,String startDat
           {
             rowFound = i;
             flightToDelete = true;
-            System.out.println(i);
           }
         }
         if(flightToDelete)
