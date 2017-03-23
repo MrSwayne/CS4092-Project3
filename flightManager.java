@@ -270,6 +270,9 @@ public class flightManager
 			case 9:System.out.println("Departing Airport not found"); break;
 			case 10:System.out.println("Arrival Airport not found"); break;
 			case 12:System.out.println("Invalid airport name."); break;
+			case 13:System.out.println("Invalid days"); break;
+			case 14:System.out.println("Invalid start date."); break;
+			case 15:System.out.println("Invalid end date."); break;
 			default: System.out.println("error not caught"); break;
 		} 
 	}
@@ -462,7 +465,9 @@ public static void editFlight(String flightNum,String flightDays,String startDat
   }
   else
   {
-    errorMessage(8);
+    if(validateFlight(flightDays,3))errorMessage(13);
+    if(validateFlight(startDateFlight,4))errorMessage(14);
+    if(validateFlight(endDateFlight,4))errorMessage(15);;
     isValid = false;
   }
   if(isValid)
