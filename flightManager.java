@@ -269,6 +269,7 @@ public class flightManager
 			case 8:System.out.println("Airport code not found"); break;
 			case 9:System.out.println("Departing Airport not found"); break;
 			case 10:System.out.println("Arrival Airport not found"); break;
+			case 12:System.out.println("Invalid airport name."); break;
 			default: System.out.println("error not caught"); break;
 		} 
 	}
@@ -350,7 +351,8 @@ public class flightManager
 					}
 				else errorMessage(5);
 			}
-			else errorMessage(3);	
+			else if(!validateAirport(airport,1))errorMessage(3);	
+			else if(!validateAirport(airportCode,2))errorMessage(12);	
         }
         
         /*
