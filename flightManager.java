@@ -464,15 +464,14 @@ public static void editAirport(String airportCode,String airport)
     }
         
         /*
-	@authors 
-	Input: 
-        Output:
+	@authors Matthew Blake
+	Input: Command-line arguments
+        Output: Error or success message
 	*/
         
 public static void editFlight(String flightNum,String flightDays,String startDateFlight,String endDateFlight)
 {
 	boolean isValid = false; //create a boolean
-	boolean change = true;
 	boolean isFound = false;
     boolean flightToEdit = false;
     int rowFound = 0;
@@ -526,24 +525,20 @@ public static void editFlight(String flightNum,String flightDays,String startDat
   }
   if(isValid)
   {
-	if(change = true)
-      {
         flightList.get(rowFound).set(5,flightDays);
 		flightList.get(rowFound).set(6,startDateFlight);
 		flightList.get(rowFound).set(7,endDateFlight);
 		System.out.print("Flight successfully edited");
-      }
-	  change = false;
-    }
+  }
 }
 }
 }
 
         
         /*
-	@authors 
-	Input: 
-        Output:
+	@authors Matthew Blake
+	Input: Command-line arguments
+        Output:	Error or success message
 	*/
         
 public static void deleteFlight(String flightNum)
