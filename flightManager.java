@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.io.*;
 import java.util.*;
 
-public class flightManager
+public class FlightManager
 {
         public static ArrayList<ArrayList<String>> airportList = new ArrayList<ArrayList<String>>();
         public static ArrayList<ArrayList<String>> flightList = new ArrayList<ArrayList<String>>();
@@ -14,8 +14,6 @@ public class flightManager
 	editFlight()      medium difficulty (Matthew)
 	deleteFlight()    medium difficulty (Matthew)
 	searchDate()      hard difficulty (Adam)
-
-
 	FYI: the validation methods do not display errors if validation is false,
 	it only return true or false, please handle and output all error messeges 
 	within your function on a case by case basis
@@ -321,8 +319,10 @@ public class flightManager
 		{
 			errorMessage(1);
 		}
+
 		sortFiles();
-     }
+		
+    }
         
             /*
 	@authors Ibrahim Alaydi
@@ -332,13 +332,16 @@ public class flightManager
         
         public static void addAirport(String airport,String airportCode)
 	   {
+		   
+
 			boolean alreadyExists=false;
 			//if both return true loop through array list and check if airport or airportcode already exist
 			if(validateAirport(airport,1) && validateAirport(airportCode,2))
 			{
+				System.out.println(airportList.get(0).size());
 				for(int i=0;i<airportList.size();i++) //looping through the airport list 
 				{
-				  if(airportList.get(i).get(1).equals(airportCode)&&(airportList.get(i).get(0).equals(airport))) 
+				  if(airportList.get(i).get(0).equals(airport))//&&(airportList.get(1).get(i).equals(airportCode))) 
 					  //checking if airport code and name exist file
 					{
 					  alreadyExists=true;
@@ -351,11 +354,12 @@ public class flightManager
 						Entry.add(airport);
 						Entry.add(airportCode);
 						airportList.add(Entry);
+						System.out.println("The airport is added successfully");
 					}
 				else errorMessage(5);
 			}
 			else if(!validateAirport(airport,1))errorMessage(3);	
-			else if(!validateAirport(airportCode,2))errorMessage(12);	
+			else if(!validateAirport(airportCode,2))errorMessage(12);
         }
         
         /*
@@ -370,7 +374,7 @@ public class flightManager
 		String temp; //intialize temp for sorting airport and code
 		if(validateAirport(airport,1) && validateAirport(airportCode,2))
 		isValid=true;// if in the correct order isValid is set to true
-		if(validateAirport(airport,2) && validateAirport(airportCode,1))
+		else if(validateAirport(airport,2) && validateAirport(airportCode,1))
 		{
 			temp=airport;
 			airport=airportCode;
@@ -383,18 +387,27 @@ public class flightManager
 			isValid=false; //else we deplay an error
 			}
 					 
-				if(isValid)// once it is valid we can enter the loop to edit airport list
-				{
-				for(int i=0;i<airportList.size();i++) //loops through airportList
+			if(isValid)// once it is valid we can enter the loop to edit airport list
+			{
+				System.out.println("*"+airport + "*" + airportCode+"*");
+				boolean isFound = false;
+				for(int i=0;i<airportList.size() && !isFound;i++) //loops through airportList
 				{
 					if(airportList.get(i).get(1).equals(airportCode))//checks if they match once again after sorting
 					{
-						if(airportList.get(i).get(0).equals(airport)) errorMessage(5);//if they match show appropriate messege
-						else airportList.get(i).set(0,airport); //else add new airport
+						//if(airportList.get(i).get(0).equals(airport)) errorMessage(5);//if they match show appropriate messege
+						//else 
+							
+						isFound = true;
+						airportList.get(i).set(0,airport);	
 					}
-				}	
+					
+				}
+				if(!isFound){
+				errorMessage(5);
 			}
 		}
+	}
         
         /*
 	@authors 
@@ -402,7 +415,7 @@ public class flightManager
         Output:
 	*/
         
-        public static void deleteAirport(String airportCode)
+     public static void deleteAirport(String airportCode)
 	{
 		if(validateAirport(airportCode, 2))
 		{
@@ -448,7 +461,7 @@ public class flightManager
 		{
 			errorMessage(3);
 		}	
-        }
+    }
         
         /*
 	@authors 
@@ -652,6 +665,7 @@ public static void editFlight(String flightNum,String flightDays,String startDat
         
         public static void sortFiles()
 	{	
+
 		String[] temp;
 		for(int i = 0;i < airportList.size();i++)
 		{
