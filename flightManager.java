@@ -483,18 +483,23 @@ public static void editFlight(String flightNum,String flightDays,String startDat
 			isFound = true;//checks if flight exists
 		}
     }
-    if(isFound)
+    if(!isFound)
+	{
+		errorMessage(17);
+	}
+	else
     {
       for (int i = 0; i < flightList.size(); i++)
       {
         for(int j = 0; j < flightList.get(i).size();j++)
         {
           if(flightList.get(i).get(j).equals(flightNum))
-          {
-            rowFound = i;//finds row of flight in .txt file
-            flightToEdit = true;
-          }
-        }
+			{
+				rowFound = i;//finds row of flight in .txt file
+				flightToEdit = true;
+				
+			}
+		}
 	  }
     for (int i = 0; i < flightList.size(); i++)
     {
