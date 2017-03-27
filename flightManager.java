@@ -338,7 +338,6 @@ public static void addAirport(String airport,String airportCode)
 		//if both return true loop through array list and check if airport or airportcode already exist
 		if(validateAirport(airport,1) && validateAirport(airportCode,2))
 		{
-			System.out.println(airportList.get(0).size());
 			for(int i=0;i<airportList.size();i++) //looping through the airport list 
 			{
 			  if(airportList.get(i).get(0).equals(airport))//&&(airportList.get(1).get(i).equals(airportCode))) 
