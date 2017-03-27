@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.io.*;
 import java.util.*;
 
-public class FlightManager
+public class flightManager
 {
         public static ArrayList<ArrayList<String>> airportList = new ArrayList<ArrayList<String>>();
         public static ArrayList<ArrayList<String>> flightList = new ArrayList<ArrayList<String>>();
