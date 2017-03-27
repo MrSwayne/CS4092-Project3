@@ -330,37 +330,37 @@ public class FlightManager
     Output:validating airportname and code and checking of it exists, also allowing user to add a new airport
 	*/
         
-        public static void addAirport(String airport,String airportCode)
-	   {
+public static void addAirport(String airport,String airportCode)
+{	
 		   
 
-			boolean alreadyExists=false;
-			//if both return true loop through array list and check if airport or airportcode already exist
-			if(validateAirport(airport,1) && validateAirport(airportCode,2))
+		boolean alreadyExists=false;
+		//if both return true loop through array list and check if airport or airportcode already exist
+		if(validateAirport(airport,1) && validateAirport(airportCode,2))
+		{
+			System.out.println(airportList.get(0).size());
+			for(int i=0;i<airportList.size();i++) //looping through the airport list 
 			{
-				System.out.println(airportList.get(0).size());
-				for(int i=0;i<airportList.size();i++) //looping through the airport list 
+			  if(airportList.get(i).get(0).equals(airport))//&&(airportList.get(1).get(i).equals(airportCode))) 
+				  //checking if airport code and name exist file
 				{
-				  if(airportList.get(i).get(0).equals(airport))//&&(airportList.get(1).get(i).equals(airportCode))) 
-					  //checking if airport code and name exist file
-					{
-					  alreadyExists=true;
-					}  
-				
-				}
-					if(!alreadyExists)
-					{//if they don't exist we need to create a new airport
-						ArrayList<String>Entry = new ArrayList<String>();
-						Entry.add(airport);
-						Entry.add(airportCode);
-						airportList.add(Entry);
-						System.out.println("The airport is added successfully");
-					}
-				else errorMessage(5);
+				  alreadyExists=true;
+				}  
+			
 			}
-			else if(!validateAirport(airport,1))errorMessage(3);	
-			else if(!validateAirport(airportCode,2))errorMessage(12);
-        }
+				if(!alreadyExists)
+				{//if they don't exist we need to create a new airport
+					ArrayList<String>Entry = new ArrayList<String>();
+					Entry.add(airport);
+					Entry.add(airportCode);
+					airportList.add(Entry);
+					System.out.println("The airport is added successfully");
+				}
+			else errorMessage(5);
+		}
+		else if(!validateAirport(airport,1))errorMessage(3);	
+		else if(!validateAirport(airportCode,2))errorMessage(12);
+ }
         
         /*
 	@authors Ibrahim Alaydi
@@ -368,46 +368,44 @@ public class FlightManager
     Output: error messages or new airport is written to the file
 	*/
         
-	public static void editAirport(String airportCode,String airport)
+public static void editAirport(String airportCode,String airport)
+{
+	boolean isValid=false; //create a boolean
+	String temp; //intialize temp for sorting airport and code
+	if(validateAirport(airport,1) && validateAirport(airportCode,2))
+	isValid=true;// if in the correct order isValid is set to true
+	else if(validateAirport(airport,2) && validateAirport(airportCode,1))
 	{
-		boolean isValid=false; //create a boolean
-		String temp; //intialize temp for sorting airport and code
-		if(validateAirport(airport,1) && validateAirport(airportCode,2))
-		isValid=true;// if in the correct order isValid is set to true
-		else if(validateAirport(airport,2) && validateAirport(airportCode,1))
-		{
-			temp=airport;
-			airport=airportCode;
-			airportCode=temp;
-			isValid=true; //if not, then we sort it.
+		temp=airport;
+		airport=airportCode;
+		airportCode=temp;
+		isValid=true; //if not, then we sort it.
+	}
+		else
+		{ 
+		errorMessage(8);
+		isValid=false; //else we deplay an error
 		}
-			else
-			{ 
-			errorMessage(8);
-			isValid=false; //else we deplay an error
-			}
-					 
-			if(isValid)// once it is valid we can enter the loop to edit airport list
+				 
+		if(isValid)// once it is valid we can enter the loop to edit airport list
+		{
+			System.out.println("*"+airport + "*" + airportCode+"*");
+			boolean isFound = false;
+			for(int i=0;i<airportList.size() && !isFound;i++) //loops through airportList
 			{
-				System.out.println("*"+airport + "*" + airportCode+"*");
-				boolean isFound = false;
-				for(int i=0;i<airportList.size() && !isFound;i++) //loops through airportList
+				if(airportList.get(i).get(1).equals(airportCode))//checks if they match once again after sorting
 				{
-					if(airportList.get(i).get(1).equals(airportCode))//checks if they match once again after sorting
-					{
-						//if(airportList.get(i).get(0).equals(airport)) errorMessage(5);//if they match show appropriate messege
-						//else 
-							
-						isFound = true;
-						airportList.get(i).set(0,airport);	
-					}
-					
+					 
+					isFound = true;
+					airportList.get(i).set(0,airport);	
 				}
-				if(!isFound){
-				errorMessage(5);
+					
 			}
+		if(!isFound){
+		errorMessage(5);
 		}
 	}
+}
         
         /*
 	@authors 
