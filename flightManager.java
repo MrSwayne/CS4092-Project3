@@ -565,15 +565,11 @@ public static void deleteFlight(String flightNum)
           if(flightList.get(i).get(j).equals(flightNum))
           {
             rowFound = i;
-            flightToDelete = true;
-          }
-        }
-        if(flightToDelete)
-        {
-          flightList.remove(rowFound);
-		  System.out.print("Flight has been deleted");
-          flightToDelete = false;
-          i--;
+			flightList.remove(rowFound);
+			System.out.print("Flight has been deleted");
+			flightToDelete = false;
+			i--;
+		  }
         }
       }
     }
