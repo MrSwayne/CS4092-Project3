@@ -471,15 +471,15 @@ public static void editAirport(String airportCode,String airport)
         
 public static void editFlight(String flightNum,String flightDays,String startDateFlight,String endDateFlight)
 {
-	boolean isValid = false; //create a boolean
+	boolean isValid = false; //create a booleans
 	boolean isFound = false;
-    boolean flightToEdit = false;
-    int rowFound = 0;
+ 	boolean flightToEdit = false;
+ 	int rowFound = 0;
 	for (int i = 0; i < flightList.size() && !isFound; i++)
-    {
+  	  {
 		if(flightList.get(i).get(0).equals(flightNum))
 		{
-			isFound = true;
+			isFound = true;//checks if flight exists
 		}
     }
     if(isFound)
@@ -490,7 +490,7 @@ public static void editFlight(String flightNum,String flightDays,String startDat
         {
           if(flightList.get(i).get(j).equals(flightNum))
           {
-            rowFound = i;
+            rowFound = i;//finds row of flight in .txt file
             flightToEdit = true;
           }
         }
