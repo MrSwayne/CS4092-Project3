@@ -465,8 +465,8 @@ public static void editAirport(String airportCode,String airport)
         
         /*
 	@authors Matthew Blake
-	Input: Command-line arguments
-        Output: Error or success message
+	Input: Command-line arguments(Flight Number, Flight days, Start date of Flight, End Date of Flight)
+        Output: Method will either display an error message or an airport will be changed to suit the command line arguments
 	*/
         
 public static void editFlight(String flightNum,String flightDays,String startDateFlight,String endDateFlight)
@@ -504,11 +504,11 @@ public static void editFlight(String flightNum,String flightDays,String startDat
     }
 	if(flightToEdit)
 	{
-	if(validateFlight(flightDays,3) && validateFlight(startDateFlight,4) && validateFlight(endDateFlight,4))
+	if(validateFlight(flightDays,3) && validateFlight(startDateFlight,4) && validateFlight(endDateFlight,4)) // validation
   {
 	isValid = true;
   }
-  else
+  else // displays appropriate error message if error is found
   {
     if(!validateFlight(flightDays,3))
 	{
@@ -525,10 +525,10 @@ public static void editFlight(String flightNum,String flightDays,String startDat
   }
   if(isValid)
   {
-        flightList.get(rowFound).set(5,flightDays);
+       		flightList.get(rowFound).set(5,flightDays);
 		flightList.get(rowFound).set(6,startDateFlight);
 		flightList.get(rowFound).set(7,endDateFlight);
-		System.out.print("Flight successfully edited");
+		System.out.print("Flight successfully edited"); //changes flight to whatever the end user enters
   }
 }
 }
@@ -537,8 +537,8 @@ public static void editFlight(String flightNum,String flightDays,String startDat
         
         /*
 	@authors Matthew Blake
-	Input: Command-line arguments
-        Output:	Error or success message
+	Input: Command-line arguments(Flight Number)
+        Output:	Method will either display an error message or remove a flight from the .txt file
 	*/
         
 public static void deleteFlight(String flightNum)
@@ -552,7 +552,7 @@ public static void deleteFlight(String flightNum)
     {
 		if(flightList.get(i).get(0).equals(flightNum))
 		{
-			isFound = true;
+			isFound = true;	// finds whether the flight number entered matches an existing flight
 		}
     }
     if(isFound)
@@ -569,21 +569,21 @@ public static void deleteFlight(String flightNum)
         }
         if(flightToDelete)
         {
-          flightList.remove(rowFound);
-		  System.out.print("Flight has been deleted");
-          flightToDelete = false;
-          i--;
+          	flightList.remove(rowFound); //removes flight from .txt file
+		System.out.print("Flight has been deleted"); //success message
+          	flightToDelete = false;
+          	i--;
         }
       }
     }
 	else
 	{
-		errorMessage(17);
+		errorMessage(17); //displays error message
 	}
   }
   else
   {
-    errorMessage(16);
+    errorMessage(16); //displays error message
   }
 }
         
