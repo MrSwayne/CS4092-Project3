@@ -245,6 +245,7 @@ public class FlightManager
 				else if(mmInt > 12)dateIsValid =false;
 				else if(ddInt == 29 && mmInt == 2 && ((yyInt % 4 == 0 && yyInt % 100 != 0) || (yyInt % 400 == 0)))dateIsValid =true;
 				else if(ddInt > daysArray[mmInt -1])dateIsValid =false;
+				if(dateIsValid == true)isValid = true;
 				break;
 				
 				default:      errorMessage(3);
@@ -271,6 +272,8 @@ public class FlightManager
 			case 13:System.out.println("Invalid days"); break;
 			case 14:System.out.println("Invalid start date."); break;
 			case 15:System.out.println("Invalid end date."); break;
+			case 16:System.out.println("Invalid flight number"); break;
+			case 17:System.out.println("Flight number not found"); break;	
 			default: System.out.println("error not caught"); break;
 		} 
 	}
@@ -468,33 +471,74 @@ public static void editAirport(String airportCode,String airport)
         
 public static void editFlight(String flightNum,String flightDays,String startDateFlight,String endDateFlight)
 {
-  boolean isValid = false; //create a boolean
-  if(validateFlight(flightDays,3) && validateFlight(startDateFlight,4) && validateFlight(endDateFlight,4))
+	boolean isValid = false; //create a boolean
+	boolean change = true;
+	boolean isFound = false;
+    boolean flightToEdit = false;
+    int rowFound = 0;
+	for (int i = 0; i < flightList.size() && !isFound; i++)
+    {
+		if(flightList.get(i).get(0).equals(flightNum))
+		{
+			isFound = true;
+		}
+    }
+    if(isFound)
+    {
+      for (int i = 0; i < flightList.size(); i++)
+      {
+        for(int j = 0; j < flightList.get(i).size();j++)
+        {
+          if(flightList.get(i).get(j).equals(flightNum))
+          {
+            rowFound = i;
+            flightToEdit = true;
+          }
+        }
+	  }
+    for (int i = 0; i < flightList.size(); i++)
+    {
+		if(flightList.get(i).get(0).equals(flightNum))
+		{
+			isFound = true;
+		}
+    }
+	if(flightToEdit)
+	{
+	if(validateFlight(flightDays,3) && validateFlight(startDateFlight,4) && validateFlight(endDateFlight,4))
   {
 	isValid = true;
   }
   else
   {
-    if(validateFlight(flightDays,3))errorMessage(13);
-    if(validateFlight(startDateFlight,4))errorMessage(14);
-    if(validateFlight(endDateFlight,4))errorMessage(15);;
-    isValid = false;
+    if(!validateFlight(flightDays,3))
+	{
+		errorMessage(13);
+	}
+	if(!validateFlight(startDateFlight,4))
+	{
+		errorMessage(14);
+	}
+	if(!validateFlight(endDateFlight,4))
+	{
+		errorMessage(15);
+	}
   }
   if(isValid)
   {
-    for(int i =0; i < flightList.size(); i++)
-    {
-      if(flightList.get(i).equals(flightNum))
+	if(change = true)
       {
-        errorMessage(5);
+        flightList.get(rowFound).set(5,flightDays);
+		flightList.get(rowFound).set(6,startDateFlight);
+		flightList.get(rowFound).set(7,endDateFlight);
+		System.out.print("Flight successfully edited");
       }
-      else
-      {
-        flightList.get(i).set(0,flightNum);
-      }
+	  change = false;
     }
-  }
 }
+}
+}
+
         
         /*
 	@authors 
@@ -502,7 +546,7 @@ public static void editFlight(String flightNum,String flightDays,String startDat
         Output:
 	*/
         
-   public static void deleteFlight(String flightNum)
+public static void deleteFlight(String flightNum)
 {
   if(validateFlight(flightNum,1))
   {
@@ -511,14 +555,13 @@ public static void editFlight(String flightNum,String flightDays,String startDat
     int rowFound = 0;
     for (int i = 0; i < flightList.size(); i++)
     {
-      if(flightList.get(i).get(1).equals(flightNum))
-      {
-        isFound = true;
-      }
+		if(flightList.get(i).get(0).equals(flightNum))
+		{
+			isFound = true;
+		}
     }
     if(isFound)
     {
-      flightList.remove(rowFound);
       for (int i = 0; i < flightList.size(); i++)
       {
         for(int j = 0; j < flightList.get(i).size();j++)
@@ -532,19 +575,20 @@ public static void editFlight(String flightNum,String flightDays,String startDat
         if(flightToDelete)
         {
           flightList.remove(rowFound);
+		  System.out.print("Flight has been deleted");
           flightToDelete = false;
           i--;
         }
       }
     }
-    else
-    {
-      errorMessage(8);
-    }
+	else
+	{
+		errorMessage(17);
+	}
   }
   else
   {
-    errorMessage(3);
+    errorMessage(16);
   }
 }
         
