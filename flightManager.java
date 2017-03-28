@@ -393,7 +393,7 @@ public static void editAirport(String airportCode,String airport)
 				 
 		if(isValid)// once it is valid we can enter the loop to edit airport list
 		{
-			System.out.println("*"+airport + "*" + airportCode+"*");
+			
 			boolean isFound = false;
 			for(int i=0;i<airportList.size() && !isFound;i++) //loops through airportList
 			{
