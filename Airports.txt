@@ -1,8 +1,8 @@
-Dublin,DUB
-New York,JFK
-Shannon,SNN
-London,LHR
-Frankfurt,FRA
-San Francisco,SFO
 Chicago,ORD
-Paris, CDG
+Dublin,DUB
+Frankfurt,FRA
+London,LHR
+NewYork,JFK
+Paris,CDG
+SanFrancisco,SFO
+Shannon,SNN
