@@ -4,31 +4,23 @@ import java.util.*;
 
 public class FlightManager
 {
+	//publicly declared for use in other methods
         public static ArrayList<ArrayList<String>> airportList = new ArrayList<ArrayList<String>>();
         public static ArrayList<ArrayList<String>> flightList = new ArrayList<ArrayList<String>>();
-	/*
-	TODO List:
-	validateFlight()  only case 4 validation left
-	addAirport()      simple (Ibrahim)
-	editAirport()     simple (Ibrahim)
-	editFlight()      medium difficulty (Matthew)
-	deleteFlight()    medium difficulty (Matthew)
-	searchDate()      hard difficulty (Adam)
-	FYI: the validation methods do not display errors if validation is false,
-	it only return true or false, please handle and output all error messeges 
-	within your function on a case by case basis
-	*/
-	
 	
         /*
-	@authors Ian McKay & Adam Swayne
-	Input: 
-        Output:
+	@authors 	Ian McKay & Adam Swayne
+	
+	Input: 		args from commandline
+        
+	processing:	Checks if files are present, if they are then the program launches,
+			the files are read in, and the instructions are displayed to user.
+			if files are not present then files are created and programme continues.
 	*/
         
         public static void main(String[] args) 
 	{
-                boolean isFiles = validateFiles();
+        boolean isFiles = validateFiles();
 		if(isFiles)
 		{
 			displayInstructions();
@@ -38,9 +30,13 @@ public class FlightManager
 	}
 	
         /*
-	@authors Ian Mckay
-	Input: 
-        Output:
+	@authors 	Ian Mckay
+	
+	Input: 		Nothing
+	
+	Processing:	reads in files from text file and stores in the arrayLists
+	
+        Output:		Nothing		
 	*/
         
         public static void readInFiles()
@@ -95,9 +91,13 @@ public class FlightManager
 	}
 	
 	/*
-	@authors Ian McKay & Adam Swayne
-	Input: 
-        Output:
+	@authors	Ian McKay & Adam Swayne
+	
+	Input:		Nothing
+	
+	Processing:	Makes sure the files are present, if they are not, then they are created
+	
+        Output:		Returns true when files are present
 	*/
         
         public static boolean validateFiles()
@@ -117,9 +117,11 @@ public class FlightManager
 	}
         
          /*
-	@authors Ian McKay & Adam Swayne 
-	Input: 
-        Output:
+	@authors 	Ian McKay & Adam Swayne 
+	
+	Input:		input to be validated, and num for whatever you want to validate, 1 being airportName, 2 being airportCode etc 		
+        
+	Output:		true or false depending if the validation was successful or not
 	*/
         
 	public static boolean validateAirport(String input, int num)
@@ -284,7 +286,7 @@ public class FlightManager
 		System.out.println("Add new airport               e.g. java FlightManager AA Lisbon LIS"); 
 		System.out.println("Edit airport                  e.g. java FlightManager EA BHD Belfast");
 		System.out.println("Delete airport                e.g. java FlightManager DA SNN"); 
-		System.out.println("Edit flight                   e.g. java FlightManager EF E13240 -TWTF-1/5/2017 31/10/2017"); 
+		System.out.println("Edit flight                   e.g. java FlightManager EF E13240 -TWTFS- 1/5/2017 31/10/2017"); 
 		System.out.println("Delete flight                 e.g. java FlightManager DF E13240"); 
 		System.out.println("Search for flights            e.g. java FlightManager SF Dublin Shannon"); 
 		System.out.println("Search for flights on date    e.g. java FlightManager SD Dublin Shannon 1/12/2017"); 
@@ -305,7 +307,7 @@ public class FlightManager
 		
 		try 
 		{
-			switch(input[0])
+			switch(input[0].toUpperCase())
 			{
 				case "AA":       addAirport(input[1],input[2]); break;
 				case "EA":       editAirport(input[1],input[2]); break;
@@ -314,8 +316,8 @@ public class FlightManager
 				case "DF":       deleteFlight(input[1]); break;
 				case "SF":       searchFlight(input[1],input[2]); break;
 				case "SD":       searchDate(input[1],input[2],input[3]); break;
-				case "help":	 displayInstructions();
-				default:         errorMessage(2);
+				case "help":	 	displayInstructions();
+				default:        	errorMessage(2);
 			}	
 		}
 		catch(ArrayIndexOutOfBoundsException exception)
@@ -359,7 +361,6 @@ public static void addAirport(String airport,String airportCode)
 					airportList.add(Entry);
 					System.out.println("The airport is added successfully");
 				}
-			else errorMessage(5);
 		}
 		else if(!validateAirport(airport,1))errorMessage(3);	
 		else if(!validateAirport(airportCode,2))errorMessage(12);
@@ -442,7 +443,6 @@ public static void editAirport(String airportCode,String airport)
 						{
 							rowFound=i;
 							flightToDelete=true;
-							System.out.println(i);
 						}
 					}
 					if(flightToDelete)
@@ -452,6 +452,7 @@ public static void editAirport(String airportCode,String airport)
 						i--;
 					}
 				}
+				System.out.print("Flight deleted successfully");
 			}
 			else
 			{
