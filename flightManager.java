@@ -393,7 +393,6 @@ public static void editAirport(String airportCode,String airport)
 				 
 		if(isValid)// once it is valid we can enter the loop to edit airport list
 		{
-			
 			boolean isFound = false;
 			for(int i=0;i<airportList.size() && !isFound;i++) //loops through airportList
 			{
@@ -877,11 +876,11 @@ public static void deleteFlight(String flightNum)
        }
         
         /*
-	@authors	Ian McKay
+		@authors	Ian McKay
 	
-	Input:		Nothing
+		Input:				Nothing
 	
-	Proccessing
+		Proccessing:		
 	
         Output:
 	*/
