@@ -451,7 +451,7 @@ public static void editAirport(String airportCode,String airport)
 						i--;
 					}
 				}
-				System.out.print("Flight deleted successfully");
+				System.out.print("Airport deleted successfully");
 			}
 			else
 			{
