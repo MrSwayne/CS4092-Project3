@@ -401,6 +401,7 @@ public static void editAirport(String airportCode,String airport)
 					 
 					isFound = true;
 					airportList.get(i).set(0,airport);	
+					System.out.print("Airport successfully edited");
 				}
 					
 			}
