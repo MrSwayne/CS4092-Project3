@@ -404,12 +404,13 @@ public static void editAirport(String airportCode,String airport)
 				{
 					 
 					isFound = true;
-					airportList.get(i).set(0,airport);	
+					airportList.get(i).set(0,airport);
+					System.out.print("Airport successfully edited");
 				}
 					
 			}
 		if(!isFound){
-		errorMessage(5);
+		errorMessage(8);
 		}
 	}
 }
