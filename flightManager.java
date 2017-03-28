@@ -877,8 +877,12 @@ public static void deleteFlight(String flightNum)
        }
         
         /*
-	@authors Ian McKay
-	Input: 
+	@authors	Ian McKay
+	
+	Input:		Nothing
+	
+	Proccessing
+	
         Output:
 	*/
         
@@ -907,9 +911,13 @@ public static void deleteFlight(String flightNum)
         }
 	
 	/*
-	@authors Ian McKay
-	Input: 
-        Output:
+	@authors	Ian McKay
+	
+	Input:		Nothing
+	
+	Proccessing:	Writes the arrayList to the flights.txt file
+	
+        Output:		Nothing
 	*/
         
         public static void writeToFlights()
