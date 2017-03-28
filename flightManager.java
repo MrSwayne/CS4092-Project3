@@ -210,29 +210,33 @@ public class FlightManager
 				break;
 			case 3:       
 				validateOf = "DaysRunning";
-				String days = "-MTWTFSS-";
+				String days = "MTWTFSS";
+				String dash = "-";
 				int countInOrder=0;
 				int matchCount=0;
 				boolean matchThisPos=false;
 				
-				for(int i = 0; i < input.length(); i++)
+				if(input.length() == 7)
 				{
-					for(int j = countInOrder; j < days.length(); j++)
+					for(int i = 0; i < input.length(); i++)
 					{
-						if(input.charAt(i)==days.charAt(j) && !matchThisPos)
+						for(int j = countInOrder; j < days.length(); j++)
 						{
-							matchCount++;
-							countInOrder= j+1;
-							matchThisPos=true;
+							if((input.charAt(i)==days.charAt(j) || input.charAt(i) == dash.charAt(0)) && !matchThisPos)
+							{
+								matchCount++;
+								countInOrder= j+1;
+								matchThisPos=true;
+							}
 						}
+						matchThisPos=false;
 					}
-					matchThisPos=false;
-				}
-				if(matchCount==input.length())
-				{
-					isValid=true;
-				}
-					break;
+					if(matchCount==input.length())
+					{
+						isValid=true;
+					}
+				}	
+				break;
 			case 4:       
 				validateOf = "StartEndDate";
 				String dateElements[];
@@ -286,7 +290,7 @@ public class FlightManager
 		System.out.println("Add new airport               e.g. java FlightManager AA Lisbon LIS"); 
 		System.out.println("Edit airport                  e.g. java FlightManager EA BHD Belfast");
 		System.out.println("Delete airport                e.g. java FlightManager DA SNN"); 
-		System.out.println("Edit flight                   e.g. java FlightManager EF E13240 -TWTFS- 1/5/2017 31/10/2017"); 
+		System.out.println("Edit flight                   e.g. java FlightManager EF EF3240 MTW-F-- 1/5/2017 31/10/2017"); 
 		System.out.println("Delete flight                 e.g. java FlightManager DF E13240"); 
 		System.out.println("Search for flights            e.g. java FlightManager SF Dublin Shannon"); 
 		System.out.println("Search for flights on date    e.g. java FlightManager SD Dublin Shannon 1/12/2017"); 
@@ -401,7 +405,6 @@ public static void editAirport(String airportCode,String airport)
 					 
 					isFound = true;
 					airportList.get(i).set(0,airport);	
-					System.out.print("Airport successfully edited");
 				}
 					
 			}
