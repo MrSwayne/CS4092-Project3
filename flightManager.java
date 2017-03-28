@@ -291,7 +291,7 @@ public class FlightManager
 		System.out.println("Edit airport                  e.g. java FlightManager EA BHD Belfast");
 		System.out.println("Delete airport                e.g. java FlightManager DA SNN"); 
 		System.out.println("Edit flight                   e.g. java FlightManager EF EF3240 MTW-F-- 1/5/2017 31/10/2017"); 
-		System.out.println("Delete flight                 e.g. java FlightManager DF E13240"); 
+		System.out.println("Delete flight                 e.g. java FlightManager DF EI3240"); 
 		System.out.println("Search for flights            e.g. java FlightManager SF Dublin Shannon"); 
 		System.out.println("Search for flights on date    e.g. java FlightManager SD Dublin Shannon 1/12/2017"); 
 		System.out.println("*****************************************************************************************");
